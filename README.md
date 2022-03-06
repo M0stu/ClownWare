@@ -1,7 +1,7 @@
 # CaChat
 
 A new Flutter project.
-    with my Lovely friends
+    with my Lovely friends,
 Clowns Together strong
 - Mostu
 - Ludaaaa
