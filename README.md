@@ -16,8 +16,8 @@ A few resources to get you started if this is your first Flutter project:
 
 ## Credits
 
-    - Mostu = 
-[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/bukotsunikki.svg?style=social&label=Follow%20%40bukotsunikki)](https://twitter.com/MostuPro)
+    - Mostu
+[![@MostuPro]](https://twitter.com/MostuPro)
     - Ludaaaa
     - Jazmingko
     - Remo
