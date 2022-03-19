@@ -18,7 +18,7 @@ A few resources to get you started if this is your first Flutter project:
 
 - Mostu ([@MostuPro](https://twitter.com/MostuPro))  
 - Ludaaaa
-- Jasmingko
+- JaZMingko
 - Remo
 - Mr.Nobody
 - salmarxa
