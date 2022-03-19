@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -41,7 +43,7 @@ class _SplashPageState extends State<SplashPage> {
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.contain,
-                  image: AssetImage('As'),
+                  image: AssetImage('Assets/img/cat_icon-o1.png'),
                 ),
               ),
             ),
