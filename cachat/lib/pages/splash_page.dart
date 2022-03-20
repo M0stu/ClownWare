@@ -1,10 +1,9 @@
-import 'dart:html';
+
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-typedef VoidCallback = void Function();
 
 class SplashPage extends StatefulWidget {
   final VoidCallback onInitializationComplete;
@@ -43,7 +42,7 @@ class _SplashPageState extends State<SplashPage> {
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.contain,
-                  image: AssetImage('Assets/img/cat_icon-o1.png'),
+                  image: AssetImage('Assets/img/cat_icon-01.png'),
                 ),
               ),
             ),
