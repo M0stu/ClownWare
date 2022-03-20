@@ -1,17 +1,16 @@
-//import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
-//import 'package:flutter/widgets.dart';
-//Packages
+//packages
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
-
-//Pages
-import '../services/navigation_service.dart';
+//services
+import '../services/navigationServices.dart';
+import '../services/media_service.dart';
 
 class SplashPage extends StatefulWidget {
   final VoidCallback onInitializationComplete;
-
   const SplashPage({
     required Key key,
     required this.onInitializationComplete,
@@ -30,7 +29,7 @@ class _SplashPageState extends State<SplashPage> {
     // TODO: implement initState
     super.initState();
     _setup().then(
-      (value) => widget.onInitializationComplete(),
+      (_) => widget.onInitializationComplete,
     );
   }
 
@@ -38,7 +37,7 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'CaChat',
+        title: 'Cachat',
         theme: ThemeData(
           backgroundColor: const Color.fromRGBO(36, 35, 49, 1.0),
           scaffoldBackgroundColor: const Color.fromRGBO(36, 35, 49, 1.0),
@@ -46,12 +45,12 @@ class _SplashPageState extends State<SplashPage> {
         home: Scaffold(
           body: Center(
             child: Container(
-              height: 200,
-              width: 200,
+              height: 900,
+              width: 600,
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.contain,
-                  image: AssetImage('Assets/img/cat_icon-01.png'),
+                  image: AssetImage('Assets/img/IMG_1189.JPG'),
                 ),
               ),
             ),
@@ -68,6 +67,9 @@ class _SplashPageState extends State<SplashPage> {
   void _registerServices() {
     GetIt.instance.registerSingleton<NavigationService>(
       NavigationService(),
+    );
+    GetIt.instance.registerSingleton<mediaService>(
+      mediaService(),
     );
   }
 }
