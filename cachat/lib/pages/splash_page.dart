@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 
 
 class SplashPage extends StatefulWidget {
+
   final VoidCallback onInitializationComplete;
   const SplashPage({
     required Key key,
@@ -29,6 +30,8 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+
         title: 'chatify',
         theme: ThemeData(
           backgroundColor: const Color.fromRGBO(36, 35, 49, 1.0),

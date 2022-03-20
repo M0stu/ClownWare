@@ -5,6 +5,7 @@ import './pages/splash_page.dart';
 void main() {              
   runApp(                              
     SplashPage(
+      
       key: UniqueKey(),
       onInitializationComplete: () {},
     ),
