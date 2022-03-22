@@ -1,13 +1,17 @@
-
-
-import 'package:flutter/cupertino.dart';
+//import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
+//import 'package:flutter/widgets.dart';
+//Packages
+import 'package:firebase_core/firebase_core.dart';
+import 'package:get_it/get_it.dart';
+
+//Pages
+import '../services/navigation_service.dart';
 
 class SplashPage extends StatefulWidget {
-
   final VoidCallback onInitializationComplete;
+
   const SplashPage({
     required Key key,
     required this.onInitializationComplete,
@@ -25,14 +29,16 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    _setup().then(
+      (value) => widget.onInitializationComplete(),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-
-        title: 'chatify',
+        debugShowCheckedModeBanner: false,
+        title: 'CaChat',
         theme: ThemeData(
           backgroundColor: const Color.fromRGBO(36, 35, 49, 1.0),
           scaffoldBackgroundColor: const Color.fromRGBO(36, 35, 49, 1.0),
@@ -51,5 +57,17 @@ class _SplashPageState extends State<SplashPage> {
             ),
           ),
         ));
+  }
+
+  Future<void> _setup() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+    _registerServices();
+  }
+
+  void _registerServices() {
+    GetIt.instance.registerSingleton<NavigationService>(
+      NavigationService(),
+    );
   }
 }

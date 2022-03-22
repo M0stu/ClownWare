@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "601859705993",
+    "project_id": "cachat-6c6d7",
+    "storage_bucket": "cachat-6c6d7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:601859705993:android:dc50e0c1b403a5d36aca58",
+        "android_client_info": {
+          "package_name": "com.example.cachat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "601859705993-6l2hi00pebfbgh4lsmduigaivatd6m24.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDI4pRMw0vHVMQ6wcB_sNvdt20Q_BpjMB4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "601859705993-6l2hi00pebfbgh4lsmduigaivatd6m24.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "601859705993-m4m5n47had840obccpkdo9s1i1dfkr2a.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.clowns.cachat"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
