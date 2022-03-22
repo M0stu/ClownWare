@@ -6,7 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 //services
-import '../services/navigationServices.dart';
+import '../services/navigation_service.dart';
 import '../services/media_service.dart';
 
 class SplashPage extends StatefulWidget {
@@ -68,8 +68,8 @@ class _SplashPageState extends State<SplashPage> {
     GetIt.instance.registerSingleton<NavigationService>(
       NavigationService(),
     );
-    GetIt.instance.registerSingleton<mediaService>(
-      mediaService(),
+    GetIt.instance.registerSingleton<MediaService>(
+      MediaService(),
     );
   }
 }
