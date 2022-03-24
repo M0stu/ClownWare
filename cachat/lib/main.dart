@@ -12,3 +12,9 @@ void main() {
     ),
   );
 }
+
+/*use_frameworks! #add here
+  
+  copied_flutter_dir = File.join(__dir__, 'Flutter')
+  copied_framework_path = File.join(copied_flutter_dir, 'Flutter.framework')
+  copied_podspec_path = File.join(copied_flutter_dir, 'Flutter.podspec')*/
