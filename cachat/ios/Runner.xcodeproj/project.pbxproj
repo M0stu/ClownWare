@@ -22,7 +22,7 @@
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
-		4D7AA29B27EBFD97005A4946 /* cachat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cachat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D7AA29B27EBFD97005A4946 /* Runner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D7AA29D27EBFD99005A4946 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D7AA29F27EBFD99005A4946 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4D7AA2A127EBFD99005A4946 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 		97C146EF1CF9000F007C117D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4D7AA29B27EBFD97005A4946 /* cachat.app */,
+				4D7AA29B27EBFD97005A4946 /* Runner.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,9 +140,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4D7AA29A27EBFD97005A4946 /* cachat */ = {
+		4D7AA29A27EBFD97005A4946 /* Runner */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4D7AA2AF27EBFF1D005A4946 /* Build configuration list for PBXNativeTarget "cachat" */;
+			buildConfigurationList = 4D7AA2AF27EBFF1D005A4946 /* Build configuration list for PBXNativeTarget "Runner" */;
 			buildPhases = (
 				4D7AA29727EBFD97005A4946 /* Sources */,
 				4D7AA29827EBFD97005A4946 /* Frameworks */,
@@ -152,9 +152,9 @@
 			);
 			dependencies = (
 			);
-			name = cachat;
+			name = Runner;
 			productName = cachat;
-			productReference = 4D7AA29B27EBFD97005A4946 /* cachat.app */;
+			productReference = 4D7AA29B27EBFD97005A4946 /* Runner.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -185,7 +185,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4D7AA29A27EBFD97005A4946 /* cachat */,
+				4D7AA29A27EBFD97005A4946 /* Runner */,
 			);
 		};
 /* End PBXProject section */
@@ -543,7 +543,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4D7AA2AF27EBFF1D005A4946 /* Build configuration list for PBXNativeTarget "cachat" */ = {
+		4D7AA2AF27EBFF1D005A4946 /* Build configuration list for PBXNativeTarget "Runner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4D7AA2B027EBFF1D005A4946 /* Debug */,
