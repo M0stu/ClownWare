@@ -50,7 +50,7 @@ class _SplashPageState extends State<SplashPage> {
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.contain,
-                  image: AssetImage('Assets/img/IMG_1189.JPG'),
+                  image: AssetImage('Assets/img/Profile.JPG'),
                 ),
               ),
             ),
