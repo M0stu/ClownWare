@@ -30,8 +30,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  calculator:
-    path: C:
+  operations:
+    path: operations/
+  
   
 
 
