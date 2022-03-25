@@ -45,12 +45,12 @@ class _SplashPageState extends State<SplashPage> {
         home: Scaffold(
           body: Center(
             child: Container(
-              height: 900,
-              width: 600,
+              height: 250,
+              width: 250,
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.contain,
-                  image: AssetImage('Assets/img/Profile.JPG'),
+                  image: AssetImage('Assets/img/cat_icon-01.png'),
                 ),
               ),
             ),
