@@ -1,0 +1,9 @@
+
+calculator/.dart_tool/package_config_subset
+calculator/.dart_tool/package_config.json
+calculator/.dart_tool/version
+calculator/.DS_Store
+*.xml
+calculator/.packages
+calculator/calculator.iml
+calculator/pubspec.lock
