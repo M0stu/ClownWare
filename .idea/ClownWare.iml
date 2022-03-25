@@ -13,6 +13,9 @@
       <excludeFolder url="file://$MODULE_DIR$/cachat/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/cachat/build" />
       <excludeFolder url="file://$MODULE_DIR$/cachat/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/calculator/build" />
+      <excludeFolder url="file://$MODULE_DIR$/calculator/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/calculator/.pub" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 27 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
