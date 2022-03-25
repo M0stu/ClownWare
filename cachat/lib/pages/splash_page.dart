@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -5,12 +6,16 @@ import 'package:flutter/widgets.dart';
 //packages
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
+
 //services
 import '../services/navigation_service.dart';
 import '../services/media_service.dart';
+import '../services/cloud_storage_service.dart';
+import 'package:cachat/services/database_servie.dart';
 
 class SplashPage extends StatefulWidget {
   final VoidCallback onInitializationComplete;
+
   const SplashPage({
     required Key key,
     required this.onInitializationComplete,
@@ -28,8 +33,12 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _setup().then(
-      (_) => widget.onInitializationComplete,
+    Future.delayed(const Duration(seconds: 2)).then(
+      (_) {
+        _setup().then(
+          (_) => widget.onInitializationComplete,
+        );
+      },
     );
   }
 
@@ -70,6 +79,12 @@ class _SplashPageState extends State<SplashPage> {
     );
     GetIt.instance.registerSingleton<MediaService>(
       MediaService(),
+    );
+    GetIt.instance.registerSingleton<CloudStorageService>(
+     CloudStorageService(),
+    );
+    GetIt.instance.registerSingleton<DatabaseService>(
+      DatabaseService(),
     );
   }
 }
