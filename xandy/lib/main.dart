@@ -3,6 +3,7 @@ import 'package:operations/operations.dart';
 
 void main() {
   runApp(const MyApp());
+  Calculator cal = new Calculator();
 }
 
 class MyApp extends StatelessWidget {
