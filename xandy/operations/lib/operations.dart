@@ -17,7 +17,3 @@ class Calculator {
   num powerVal(int val, int exponent) => pow(val, exponent);
 }
 
-void main() {
-  Calculator calc = Calculator();
-  calc.addOne(4);
-}

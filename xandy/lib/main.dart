@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'X and Y',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'X and Y'),
     );
   }
 }
@@ -65,6 +65,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    Calculator cal = new Calculator();
+
+    final x = new TextEditingController();
+
+    final y = new TextEditingController();
+    int z;
+    String result;
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -95,23 +102,179 @@ class _MyHomePageState extends State<MyHomePage> {
           // center the children vertically; the main axis here is the vertical
           // axis because Columns are vertical (the cross axis would be
           // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            TextField(
+              controller: x,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Enter First Number X',
+              ),
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            TextField(
+              controller: y,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Enter Second Number Y',
+              ),
             ),
           ],
         ),
+      ), //start
+
+      floatingActionButton: Stack(
+        children: <Widget>[
+          Align(
+            alignment: Alignment(1.1, 0.550), //center right
+            child: FloatingActionButton(
+              onPressed: () => {
+                z = cal.addTwoNumbers(int.parse(x.text), int.parse(y.text)),
+                result = z.toString(),
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      // Retrieve the text the that user has entered by using the
+                      // TextEditingController.
+                      content: Text(result),
+                    );
+                  },
+                ),
+              },
+              tooltip: 'Add',
+              child: const Icon(Icons.add),
+            ),
+          ),
+          Align(
+            alignment: Alignment(0.100, 0.550), //center middle
+            child: FloatingActionButton(
+              onPressed: () => {
+                z = cal.subTwoNumbers(int.parse(x.text), int.parse(y.text)),
+                result = z.toString(),
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      // Retrieve the text the that user has entered by using the
+                      // TextEditingController.
+                      content: Text(result),
+                    );
+                  },
+                ),
+              },
+              tooltip: 'Add',
+              child: const Icon(Icons.add),
+            ),
+          ),
+          Align(
+            alignment: Alignment(-0.9, 1.0), //bottom left
+            child: FloatingActionButton(
+              onPressed: () => {
+                z = cal.subTwoNumbers(int.parse(x.text), int.parse(y.text)),
+                result = z.toString(),
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      // Retrieve the text the that user has entered by using the
+                      // TextEditingController.
+                      content: Text(result),
+                    );
+                  },
+                ),
+              },
+              tooltip: 'Add',
+              child: const Icon(Icons.add),
+            ),
+          ),
+          Align(
+            alignment: Alignment(-0.9, 0.550), //center left
+            child: FloatingActionButton(
+              onPressed: () => {
+                z = cal.subTwoNumbers(int.parse(x.text), int.parse(y.text)),
+                result = z.toString(),
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      // Retrieve the text the that user has entered by using the
+                      // TextEditingController.
+                      content: Text(result),
+                    );
+                  },
+                ),
+              },
+              tooltip: 'Add',
+              child: const Icon(Icons.add),
+            ),
+          ),
+          Align(
+            alignment: Alignment(0.1, 1.0), // bottom center
+            child: FloatingActionButton(
+              onPressed: () => {
+                z = cal.subTwoNumbers(int.parse(x.text), int.parse(y.text)),
+                result = z.toString(),
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      // Retrieve the text the that user has entered by using the
+                      // TextEditingController.
+                      content: Text(result),
+                    );
+                  },
+                ),
+              },
+              tooltip: 'Add',
+              child: const Icon(Icons.add),
+            ),
+          ),
+          Align(
+            alignment: Alignment(1.10, 1.0),
+            child: FloatingActionButton(
+              onPressed: () => {
+                z = cal.subTwoNumbers(int.parse(x.text), int.parse(y.text)),
+                result = z.toString(),
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      // Retrieve the text the that user has entered by using the
+                      // TextEditingController.
+                      content: Text(result),
+                    );
+                  },
+                ),
+              },
+              tooltip: 'Add',
+              child: const Icon(Icons.add),
+            ),
+          ),
+          Align(
+            alignment: Alignment(-0.8, 0.450),
+            child: FloatingActionButton(
+              onPressed: () => {
+                z = cal.subTwoNumbers(int.parse(x.text), int.parse(y.text)),
+                result = z.toString(),
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      // Retrieve the text the that user has entered by using the
+                      // TextEditingController.
+                      content: Text(result),
+                    );
+                  },
+                ),
+              },
+              tooltip: 'Add',
+              child: const Icon(Icons.add),
+            ),
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+
+      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
