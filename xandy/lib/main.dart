@@ -162,15 +162,17 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                 ),
               },
-              tooltip: 'Add',
-              child: const Icon(Icons.add),
+              tooltip: 'minus',
+              child: const Icon(Icons.exposure_minus_1),
             ),
           ),
           Align(
             alignment: Alignment(-0.9, 1.0), //bottom left
             child: FloatingActionButton(
               onPressed: () => {
-                z = cal.subTwoNumbers(int.parse(x.text), int.parse(y.text)),
+                //come here OMAR  here is SIN  to make it
+                // to make it SIN , COS , TAN in the bottom of app
+                z = cal.addTwoNumbers(int.parse(x.text), int.parse(y.text)),
                 result = z.toString(),
                 showDialog(
                   context: context,
@@ -183,15 +185,21 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                 ),
               },
-              tooltip: 'Add',
-              child: const Icon(Icons.add),
+              tooltip: 'Sin',
+              child: const Icon(Icons.waves),
             ),
           ),
+
+          //problem here ya OMaaaaar double casting  bos 3la al ALIGN aly fo2  feha al sin
+          //aly t7t dee hya al modulus mzboota
+          // aly t7t al modulus cos
+          //aly t7t al cos Tan
           Align(
             alignment: Alignment(-0.9, 0.550), //center left
             child: FloatingActionButton(
               onPressed: () => {
-                z = cal.subTwoNumbers(int.parse(x.text), int.parse(y.text)),
+                // this to MODULUS to make it easy in app
+                z = cal.modulus(int.parse(x.text), int.parse(y.text)),
                 result = z.toString(),
                 showDialog(
                   context: context,
@@ -204,14 +212,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                 ),
               },
-              tooltip: 'Add',
-              child: const Icon(Icons.add),
+              tooltip: 'Modulus',
+              child: const Icon(Icons.percent),
             ),
           ),
           Align(
             alignment: Alignment(0.1, 1.0), // bottom center
             child: FloatingActionButton(
               onPressed: () => {
+                //please change this to COS
                 z = cal.subTwoNumbers(int.parse(x.text), int.parse(y.text)),
                 result = z.toString(),
                 showDialog(
@@ -226,11 +235,33 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               },
               tooltip: 'Add',
-              child: const Icon(Icons.add),
+              child: const Icon(Icons.content_cut_sharp),
             ),
           ),
           Align(
             alignment: Alignment(1.10, 1.0),
+            child: FloatingActionButton(
+              onPressed: () => {
+                //please change this to TAN
+                z = cal.subTwoNumbers(int.parse(x.text), int.parse(y.text)),
+                result = z.toString(),
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      // Retrieve the text the that user has entered by using the
+                      // TextEditingController.
+                      content: Text(result),
+                    );
+                  },
+                ),
+              },
+              tooltip: 'Add',
+              child: const Icon(Icons.tag_rounded),
+            ),
+          ),
+          Align(
+            alignment: Alignment(-0.450, 0.750),
             child: FloatingActionButton(
               onPressed: () => {
                 z = cal.subTwoNumbers(int.parse(x.text), int.parse(y.text)),
@@ -251,7 +282,28 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           Align(
-            alignment: Alignment(-0.8, 0.450),
+            alignment: Alignment(0.100, 0.7600),
+            child: FloatingActionButton(
+              onPressed: () => {
+                z = cal.subTwoNumbers(int.parse(x.text), int.parse(y.text)),
+                result = z.toString(),
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      // Retrieve the text the that user has entered by using the
+                      // TextEditingController.
+                      content: Text(result),
+                    );
+                  },
+                ),
+              },
+              tooltip: 'Add',
+              child: const Icon(Icons.add),
+            ),
+          ),
+          Align(
+            alignment: Alignment(0.650, 0.760),
             child: FloatingActionButton(
               onPressed: () => {
                 z = cal.subTwoNumbers(int.parse(x.text), int.parse(y.text)),
