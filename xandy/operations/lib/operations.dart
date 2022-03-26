@@ -11,9 +11,9 @@ class Calculator {
   int mulTwoNumbers(int val1, int val2) => val1 * val2;
   double divTwoNumbers(int val1, int val2) => val1 / val2;
   int modulus(int val1, int val2) => val1 % val2;
-  double sinVal(int value) => sin(value);
+  double sinVal(num value) => sin(value);
   double cosVal(int value) => cos(value);
   double tanVal(int value) => tan(value);
-  num powerVal(int val, int exponent) => pow(val, exponent);
+  num powerVal(num val, num exponent) => pow(val, exponent);
 }
 

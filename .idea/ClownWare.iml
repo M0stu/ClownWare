@@ -13,6 +13,12 @@
       <excludeFolder url="file://$MODULE_DIR$/cachat/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/cachat/build" />
       <excludeFolder url="file://$MODULE_DIR$/cachat/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/xandy/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/xandy/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/xandy/build" />
+      <excludeFolder url="file://$MODULE_DIR$/xandy/operations/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/xandy/operations/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/xandy/operations/build" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 27 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
