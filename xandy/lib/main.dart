@@ -58,19 +58,16 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final y = TextEditingController();
 
-    int? z;
+    double? z;
     String result;
 
-    final a= TextEditingController();
+    final a = TextEditingController();
     return Scaffold(
       appBar: AppBar(
-
         title: Text(widget.title),
       ),
       body: Center(
-
         child: Column(
-
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             TextField(
@@ -88,17 +85,15 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             TextField(
-              controller: a ,
+              controller: a,
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: 'Enter an angle',
               ),
             ),
-
           ],
         ),
       ), //start
-
 
       floatingActionButton: Stack(
         children: <Widget>[
@@ -106,7 +101,8 @@ class _MyHomePageState extends State<MyHomePage> {
             alignment: const Alignment(0.65, 0.550), //center right
             child: FloatingActionButton(
               onPressed: () => {
-                z = cal.addTwoNumbers(int.parse(x.text), int.parse(y.text)),
+                z = cal.addTwoNumbers(int.parse(x.text), int.parse(y.text))
+                    as double?,
                 result = z.toString(),
                 showDialog(
                   context: context,
@@ -127,7 +123,8 @@ class _MyHomePageState extends State<MyHomePage> {
             alignment: const Alignment(0.100, 0.550), //center middle
             child: FloatingActionButton(
               onPressed: () => {
-                z = cal.subTwoNumbers(int.parse(x.text), int.parse(y.text)),
+                z = cal.subTwoNumbers(int.parse(x.text), int.parse(y.text))
+                    as double?,
                 result = z.toString(),
                 showDialog(
                   context: context,
@@ -150,7 +147,8 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () => {
                 //come here OMAR  here is SIN  to make it
                 // to make it SIN , COS , TAN in the bottom of app
-                z = cal.mulTwoNumbers(int.parse(x.text), int.parse(y.text)),
+                z = cal.mulTwoNumbers(int.parse(x.text), int.parse(y.text))
+                    as double?,
                 result = z.toString(),
                 showDialog(
                   context: context,
@@ -177,7 +175,8 @@ class _MyHomePageState extends State<MyHomePage> {
             child: FloatingActionButton(
               onPressed: () => {
                 // this to MODULUS to make it easy in app
-                z = cal.modulus(int.parse(x.text), int.parse(y.text)),
+                z = cal.modulus(int.parse(x.text), int.parse(y.text))
+                    as double?,
                 result = z.toString(),
                 showDialog(
                   context: context,
@@ -199,8 +198,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: FloatingActionButton(
               onPressed: () => {
                 //please change this to COS
-                z = cal.divTwoNumbers(int.parse(x.text), int.parse(y.text))
-                    as int,
+                z = cal.divTwoNumbers(int.parse(x.text), int.parse(y.text)),
                 result = z.toString(),
                 showDialog(
                   context: context,
@@ -222,7 +220,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: FloatingActionButton.extended(
               onPressed: () => {
                 //please change this to TAN
-                z = cal.powerVal(int.parse(x.text), int.parse(y.text)) as int?,
+                z = cal.powerVal(int.parse(x.text), int.parse(y.text)) as double?,
                 result = z.toString(),
                 showDialog(
                   context: context,
@@ -243,7 +241,7 @@ class _MyHomePageState extends State<MyHomePage> {
             alignment: const Alignment(-0.450, 1.0),
             child: FloatingActionButton.extended(
               onPressed: () => {
-                z = cal.sinVal(double.parse(a.text)) as int?,
+                z = cal.sinVal(double.parse(a.text)) ,
                 result = z.toString(),
                 showDialog(
                   context: context,
@@ -264,7 +262,7 @@ class _MyHomePageState extends State<MyHomePage> {
             alignment: const Alignment(0.100, 1.0),
             child: FloatingActionButton.extended(
               onPressed: () => {
-                z = cal.cosVal(int.parse(a.text)) as int?,
+                z = cal.cosVal(double.parse(a.text)),
                 result = z.toString(),
                 showDialog(
                   context: context,
@@ -285,7 +283,7 @@ class _MyHomePageState extends State<MyHomePage> {
             alignment: const Alignment(0.650, 1.0),
             child: FloatingActionButton.extended(
               onPressed: () => {
-                z = cal.tanVal(int.parse(a.text)) as int?,
+                z = cal.tanVal(double.parse(a.text)) ,
                 result = z.toString(),
                 showDialog(
                   context: context,
