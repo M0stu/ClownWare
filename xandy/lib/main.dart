@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'XendY\'s Calculator'),
+      home: const MyHomePage(title: 'XandY\'s Calculator'),
     );
   }
 }
@@ -59,6 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
     final y = TextEditingController();
 
     double? z;
+    int eq;
     String result;
 
     final a = TextEditingController();
@@ -101,9 +102,8 @@ class _MyHomePageState extends State<MyHomePage> {
             alignment: const Alignment(0.65, 0.550), //center right
             child: FloatingActionButton(
               onPressed: () => {
-                z = cal.addTwoNumbers(int.parse(x.text), int.parse(y.text))
-                    as double?,
-                result = z.toString(),
+                eq = cal.addTwoNumbers(int.parse(x.text), int.parse(y.text)),
+                result = eq.toString(),
                 showDialog(
                   context: context,
                   builder: (context) {
@@ -123,9 +123,8 @@ class _MyHomePageState extends State<MyHomePage> {
             alignment: const Alignment(0.100, 0.550), //center middle
             child: FloatingActionButton(
               onPressed: () => {
-                z = cal.subTwoNumbers(int.parse(x.text), int.parse(y.text))
-                    as double?,
-                result = z.toString(),
+                eq = cal.subTwoNumbers(int.parse(x.text), int.parse(y.text)),
+                result = eq.toString(),
                 showDialog(
                   context: context,
                   builder: (context) {
@@ -147,9 +146,8 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () => {
                 //come here OMAR  here is SIN  to make it
                 // to make it SIN , COS , TAN in the bottom of app
-                z = cal.mulTwoNumbers(int.parse(x.text), int.parse(y.text))
-                    as double?,
-                result = z.toString(),
+                eq = cal.mulTwoNumbers(int.parse(x.text), int.parse(y.text)),
+                result = eq.toString(),
                 showDialog(
                   context: context,
                   builder: (context) {
@@ -175,9 +173,8 @@ class _MyHomePageState extends State<MyHomePage> {
             child: FloatingActionButton(
               onPressed: () => {
                 // this to MODULUS to make it easy in app
-                z = cal.modulus(int.parse(x.text), int.parse(y.text))
-                    as double?,
-                result = z.toString(),
+                eq = cal.modulus(int.parse(x.text), int.parse(y.text)),
+                result = eq.toString(),
                 showDialog(
                   context: context,
                   builder: (context) {
@@ -220,7 +217,8 @@ class _MyHomePageState extends State<MyHomePage> {
             child: FloatingActionButton.extended(
               onPressed: () => {
                 //please change this to TAN
-                z = cal.powerVal(int.parse(x.text), int.parse(y.text)) as double?,
+                z = cal.powerVal(int.parse(x.text), int.parse(y.text))
+                    as double?,
                 result = z.toString(),
                 showDialog(
                   context: context,
@@ -241,7 +239,7 @@ class _MyHomePageState extends State<MyHomePage> {
             alignment: const Alignment(-0.450, 1.0),
             child: FloatingActionButton.extended(
               onPressed: () => {
-                z = cal.sinVal(double.parse(a.text)) ,
+                z = cal.sinVal(double.parse(a.text)),
                 result = z.toString(),
                 showDialog(
                   context: context,
@@ -283,7 +281,7 @@ class _MyHomePageState extends State<MyHomePage> {
             alignment: const Alignment(0.650, 1.0),
             child: FloatingActionButton.extended(
               onPressed: () => {
-                z = cal.tanVal(double.parse(a.text)) ,
+                z = cal.tanVal(double.parse(a.text)),
                 result = z.toString(),
                 showDialog(
                   context: context,
