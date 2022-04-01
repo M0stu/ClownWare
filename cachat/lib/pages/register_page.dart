@@ -9,3 +9,21 @@ import 'package:cachat/services/database_service.dart';
 import 'package:cachat/services/cloud_storage_service.dart';
 import 'package:cachat/services/navigation_service.dart';
 //widgets
+
+class registerPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _RegisterPageState();
+  }
+}
+
+class _RegisterPageState extends State<registerPage> {
+  @override
+  Widget build(BuildContext context) {
+    return _buildUI();
+  }
+
+  Widget _buildUI() {
+    return Scaffold();
+  }
+}
