@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 //packages
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
+
 //services
 import '../services/navigation_service.dart';
 import '../services/media_service.dart';
@@ -13,6 +14,7 @@ import '../services/database_service.dart';
 
 class SplashPage extends StatefulWidget {
   final VoidCallback onInitializationComplete;
+
   const SplashPage({
     required Key key,
     required this.onInitializationComplete,
@@ -30,8 +32,12 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _setup().then(
-      (_) => widget.onInitializationComplete,
+    Future.delayed(const Duration(seconds: 1)).then(
+      (_) {
+        _setup().then(
+          (_) => widget.onInitializationComplete(),
+        );
+      },
     );
   }
 
@@ -52,7 +58,7 @@ class _SplashPageState extends State<SplashPage> {
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   fit: BoxFit.contain,
-                  image: AssetImage('Assets/img/Profile.JPG'),
+                  image: AssetImage('Assets/img/cat_icon-01.png'),
                 ),
               ),
             ),
