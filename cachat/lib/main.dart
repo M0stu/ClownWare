@@ -6,7 +6,10 @@ import './services/navigation_service.dart';
 
 //Pages
 import './pages/splash_page.dart';
+
+//ty Omar for this Const <3
 const color = Color.fromRGBO(36, 35, 49, 1.0);
+//Gurls please use this const over all the code <3
 void main() {
   runApp(
     SplashPage(
@@ -32,7 +35,7 @@ class MainApp extends StatelessWidget {
           backgroundColor: color,
         ),
       ),
-      //navigatorKey: NavigationService.navigatorKey,
+      navigatorKey: NavigationService.navigatorKey,
     );
   }
 }
