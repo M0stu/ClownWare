@@ -50,6 +50,10 @@ class _LoginPageState extends State<LoginPage> {
               height: _deviceHeight * 0.05,
             ),
             _loginButton(),
+            SizedBox(
+              height: _deviceHeight * 0.5,
+            ),
+            _registerButton(),
           ],
         ),
       ),
@@ -98,6 +102,14 @@ class _LoginPageState extends State<LoginPage> {
   Widget _loginButton() {
     return RoundedButton(
         name: "Login",
+        height: _deviceHeight * 0.065,
+        width: _deviceHeight * 0.65,
+        onPressed: () {});
+  }
+
+  Widget _registerButton() {
+    return RoundedButton(
+        name: "Register",
         height: _deviceHeight * 0.065,
         width: _deviceHeight * 0.65,
         onPressed: () {});
