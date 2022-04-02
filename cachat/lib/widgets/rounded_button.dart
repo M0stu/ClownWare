@@ -21,12 +21,12 @@ class RoundedButton extends StatelessWidget {
       width: width,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(height * 0.25),
-          color: Colors.amber),
+          color: Colors.indigo),
       child: TextButton(
         onPressed: () {},
         child: Text(
           name,
-          style: TextStyle(fontSize: 22, color: Colors.white, height: 1.50),
+          style: const TextStyle(fontSize: 22, color: Colors.white, height: 1.50),
         ),
       ),
     );

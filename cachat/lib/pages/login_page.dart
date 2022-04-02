@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             _loginButton(),
             SizedBox(
-              height: _deviceHeight * 0.5,
+              height: _deviceHeight * 0.02,
             ),
             _registerButton(),
           ],
@@ -87,6 +87,9 @@ class _LoginPageState extends State<LoginPage> {
               hintText: "Email",
               obscureText: false,
             ),
+            SizedBox(
+              height: _deviceHeight * 0.02,
+            ),
             CustomTextFormField(
               onSaved: (_value) {},
               regEx: r".{8,}",
@@ -108,10 +111,14 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _registerButton() {
-    return RoundedButton(
-        name: "Register",
-        height: _deviceHeight * 0.065,
-        width: _deviceHeight * 0.65,
-        onPressed: () {});
+    return GestureDetector(
+      onTap: () {},
+      child: const Text(
+        'Don\'t have an account?',
+        style: TextStyle(
+          color: Colors.blueAccent,
+        ),
+      ),
+    );
   }
 }
