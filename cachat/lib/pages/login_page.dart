@@ -1,4 +1,5 @@
 //Packages
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:get_it/get_it.dart';
@@ -88,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _loginForm() {
-    return Container(
+    return SizedBox(
       height: _deviceHeight * 0.18,
       child: Form(
         key: _loginFormKey,
@@ -131,20 +132,32 @@ class _LoginPageState extends State<LoginPage> {
         name: "Login",
         height: _deviceHeight * 0.065,
         width: _deviceHeight * 0.65,
-        onPressed: () {});
+        onPressed: () {
+          if (_loginFormKey.currentState!.validate()){
+            if (kDebugMode) {
+              print("Email: $_email, Password: $_password");
+            }
+            _loginFormKey.currentState!.save();
+            _auth.loginUsingEmailPWD(_email!, _password!);
+            if (kDebugMode) {
+              print("Email: $_email, Password: $_password");
+            }
+
+          }
+        });
   }
 
   Widget _registerLink() {
     return GestureDetector(
       onTap: () {
-        print("Meaaaaaaaaaaaaaaaaw!");
+        if (kDebugMode) {
+          print("Meaaaaaaaaaaaaaaaaw!");
+        }
       },
-      child: Container(
-        child: Text(
-          'Meaw, Register!',
-          style: TextStyle(
-            color: Colors.blue,
-          ),
+      child: const Text(
+        'Meaw, Register!',
+        style: TextStyle(
+          color: Colors.blue,
         ),
       ),
     );

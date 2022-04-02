@@ -36,15 +36,15 @@ class ChatUser {
   }
 
   String lastTimeActive() {
-    var now = new DateTime.now();
-    var Time_counter = now.minute - lastSeen.minute;
+    var now = DateTime.now();
+    var timeCounter = now.minute - lastSeen.minute;
 
-    if (Time_counter < 60) {
-      var Time_counter = now.minute - lastSeen.minute;
-      return "Last Seen ${Time_counter} min";
+    if (timeCounter < 60) {
+      var timeCounter = now.minute - lastSeen.minute;
+      return "Last Seen $timeCounter min";
     } else {
-      var Time_counter = now.hour - lastSeen.hour;
-      return "Last Seen ${Time_counter} hours";
+      var timeCounter = now.hour - lastSeen.hour;
+      return "Last Seen $timeCounter hours";
     }
   }
 
