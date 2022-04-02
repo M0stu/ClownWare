@@ -6,6 +6,7 @@ import './services/navigation_service.dart';
 
 //Pages
 import './pages/splash_page.dart';
+import './pages/Login_page.dart';
 
 //ty Omar for this Const <3
 const color = Color.fromRGBO(36, 35, 49, 1.0);
@@ -36,6 +37,10 @@ class MainApp extends StatelessWidget {
         ),
       ),
       navigatorKey: NavigationService.navigatorKey,
+      initialRoute: '/login',
+      routes: {
+        '/login': (BuildContext _context) => LoginPage(),
+      },
     );
   }
 }
