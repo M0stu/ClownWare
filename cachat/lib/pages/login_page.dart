@@ -51,7 +51,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             _loginButton(),
             SizedBox(
-              height: _deviceHeight * 0.5,
+              height: _deviceHeight * 0.02,
             ),
             _registerLink(),
           ],
@@ -86,6 +86,9 @@ class _LoginPageState extends State<LoginPage> {
               regEx: r"^[a-zA-z0-9.a-zA-Z0-9.!#$%&'*+-=?^_`{|}~]+\.[a-zA-Z]+",
               hintText: "Email",
               obscureText: false,
+            ),
+            SizedBox(
+              height: _deviceHeight * 0.02,
             ),
             CustomTextFormField(
               onSaved: (_value) {},

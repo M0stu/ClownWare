@@ -1,7 +1,9 @@
+import 'package:cachat/providers/authentication_provider.dart';
 import 'package:flutter/material.dart';
 
 //Packages
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:provider/provider.dart';
 
 //Serviecs
 import './services/navigation_service.dart';
@@ -16,7 +18,7 @@ void main() {
       key: UniqueKey(),
       onInitializationComplete: () {
         runApp(
-            const MainApp(),
+          const MainApp(),
         );
       },
     ),
@@ -26,25 +28,30 @@ void main() {
 class MainApp extends StatelessWidget {
   const MainApp({Key? key}) : super(key: key);
 
-
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return MaterialApp(
-      title: "CaChat",
-      theme: ThemeData(
-        backgroundColor: const Color.fromRGBO(36, 36, 49, 1.0),
-        scaffoldBackgroundColor: const Color.fromRGBO(36, 36, 49, 1.0),
-        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          backgroundColor: Color.fromRGBO(30, 29, 37, 1.0),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AuthenticationProvider>(create: (BuildContext _context){
+          return AuthenticationProvider();
+        },)
+      ],
+      child: MaterialApp(
+        title: "CaChat",
+        theme: ThemeData(
+          backgroundColor: const Color.fromRGBO(36, 36, 49, 1.0),
+          scaffoldBackgroundColor: const Color.fromRGBO(36, 36, 49, 1.0),
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+            backgroundColor: Color.fromRGBO(30, 29, 37, 1.0),
+          ),
         ),
+        navigatorKey: NavigationService.navigatorKey,
+        initialRoute: '/login',
+        routes: {
+          '/login': (BuildContext _context) => LoginPage(),
+        },
       ),
-      navigatorKey: NavigationService.navigatorKey,
-      initialRoute: '/login',
-      routes: {
-        '/login': (BuildContext _context) => LoginPage(),
-      },
     );
   }
 }
