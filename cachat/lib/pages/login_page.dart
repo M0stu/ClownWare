@@ -15,7 +15,7 @@ import '../providers/authentication_provider.dart';
 import '../services/navigation_service.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+
 
   @override
   State<StatefulWidget> createState() {
@@ -39,39 +39,46 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     _deviceHeight = MediaQuery.of(context).size.height;
     _deviceWidth = MediaQuery.of(context).size.width;
-    _auth = Provider.of<AuthenticationProvider>(context);
+    //_auth = Provider.of<AuthenticationProvider>(context);
     _navigation = GetIt.instance.get<NavigationService>();
     return _buildUI();
   }
 
   Widget _buildUI() {
     return Scaffold(
-      body: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: _deviceWidth * 0.03,
-          vertical: _deviceHeight * 0.02,
-        ),
-        height: _deviceHeight * 0.98,
-        width: _deviceWidth * 0.97,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            _pageTitle(),
-            SizedBox(
-              height: _deviceHeight * 0.04,
+      resizeToAvoidBottomInset: false,
+      body: Center(
+        child: SingleChildScrollView(
+          reverse: true,
+          padding: const EdgeInsets.all(35),
+          child:Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: _deviceWidth * 0.03,
+              vertical: _deviceHeight * 0.02,
             ),
-            _loginForm(),
-            SizedBox(
-              height: _deviceHeight * 0.05,
+            height: _deviceHeight * 0.98,
+            width: _deviceWidth * 0.97,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                _pageTitle(),
+                SizedBox(
+                  height: _deviceHeight * 0.04,
+                ),
+                _loginForm(),
+                SizedBox(
+                  height: _deviceHeight * 0.12,
+                ),
+                _loginButton(),
+                SizedBox(
+                  height: _deviceHeight * 0.02,
+                ),
+                _registerLink(),
+              ],
             ),
-            _loginButton(),
-            SizedBox(
-              height: _deviceHeight * 0.02,
-            ),
-            _registerLink(),
-          ],
+          ),
         ),
       ),
     );
@@ -109,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
               obscureText: false,
             ),
             SizedBox(
-              height: _deviceHeight * 0.02,
+              height: _deviceHeight * 0.05,
             ),
             CustomTextFormField(
               onSaved: (_value) {
@@ -138,7 +145,7 @@ class _LoginPageState extends State<LoginPage> {
               print("Email: $_email, Password: $_password");
             }
             _loginFormKey.currentState!.save();
-            _auth.loginUsingEmailPWD(_email!, _password!);
+            _auth.loginUsingEmailAndPassword(_email!, _password!);
             if (kDebugMode) {
               print("Email: $_email, Password: $_password");
             }

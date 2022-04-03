@@ -18,7 +18,7 @@ void main() {
       key: UniqueKey(),
       onInitializationComplete: () {
         runApp(
-          const MainApp(),
+           MainApp(),
         );
       },
     ),
@@ -26,8 +26,6 @@ void main() {
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
