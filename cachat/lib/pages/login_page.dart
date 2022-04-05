@@ -15,8 +15,6 @@ import '../providers/authentication_provider.dart';
 import '../services/navigation_service.dart';
 
 class LoginPage extends StatefulWidget {
-
-
   @override
   State<StatefulWidget> createState() {
     return _LoginPageState();
@@ -39,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     _deviceHeight = MediaQuery.of(context).size.height;
     _deviceWidth = MediaQuery.of(context).size.width;
-    //_auth = Provider.of<AuthenticationProvider>(context);
+    _auth = Provider.of<AuthenticationProvider>(context);
     _navigation = GetIt.instance.get<NavigationService>();
     return _buildUI();
   }
@@ -51,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
         child: SingleChildScrollView(
           reverse: true,
           padding: const EdgeInsets.all(35),
-          child:Container(
+          child: Container(
             padding: EdgeInsets.symmetric(
               horizontal: _deviceWidth * 0.03,
               vertical: _deviceHeight * 0.02,
@@ -140,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
         height: _deviceHeight * 0.065,
         width: _deviceHeight * 0.65,
         onPressed: () {
-          if (_loginFormKey.currentState!.validate()){
+          if (_loginFormKey.currentState!.validate()) {
             if (kDebugMode) {
               print("Email: $_email, Password: $_password");
             }
@@ -149,7 +147,6 @@ class _LoginPageState extends State<LoginPage> {
             if (kDebugMode) {
               print("Email: $_email, Password: $_password");
             }
-
           }
         });
   }
