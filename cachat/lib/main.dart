@@ -11,6 +11,7 @@ import './services/navigation_service.dart';
 //Pages
 import './pages/splash_page.dart';
 import './pages/login_page.dart';
+import './pages/home_page.dart';
 
 void main() {
   runApp(
@@ -18,7 +19,7 @@ void main() {
       key: UniqueKey(),
       onInitializationComplete: () {
         runApp(
-           MainApp(),
+          MainApp(),
         );
       },
     ),
@@ -31,9 +32,11 @@ class MainApp extends StatelessWidget {
     // TODO: implement build
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<AuthenticationProvider>(create: (BuildContext _context){
-          return AuthenticationProvider();
-        },)
+        ChangeNotifierProvider<AuthenticationProvider>(
+          create: (BuildContext _context) {
+            return AuthenticationProvider();
+          },
+        )
       ],
       child: MaterialApp(
         title: "CaChat",
@@ -48,6 +51,7 @@ class MainApp extends StatelessWidget {
         initialRoute: '/login',
         routes: {
           '/login': (BuildContext _context) => LoginPage(),
+          '/home': (BuildContext _context) => HomePage(),
         },
       ),
     );
