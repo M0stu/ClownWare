@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 //Packages
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 //Serviecs
@@ -17,7 +18,7 @@ void main() {
   runApp(
     SplashPage(
       key: UniqueKey(),
-      onInitializationComplete: () {
+      onInitializationComplete: () async {
         runApp(
           MainApp(),
         );

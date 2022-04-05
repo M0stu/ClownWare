@@ -1,3 +1,4 @@
+import 'package:cachat/providers/authentication_provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -78,6 +79,12 @@ class _SplashPageState extends State<SplashPage> {
     );
     GetIt.instance.registerSingleton<MediaService>(
       MediaService(),
+    );
+    GetIt.instance.registerSingleton<DatabaseService>(
+      DatabaseService(),
+    );
+    GetIt.instance.registerSingleton<CloudStorageService>(
+      CloudStorageService(),
     );
   }
 }

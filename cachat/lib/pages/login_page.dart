@@ -67,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 _loginForm(),
                 SizedBox(
-                  height: _deviceHeight * 0.12,
+                  height: _deviceHeight * 0.11,
                 ),
                 _loginButton(),
                 SizedBox(
@@ -95,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _loginForm() {
     return SizedBox(
-      height: _deviceHeight * 0.18,
+      height: _deviceHeight * 0.275,
       child: Form(
         key: _loginFormKey,
         child: Column(
@@ -109,7 +109,8 @@ class _LoginPageState extends State<LoginPage> {
                   _email = _value;
                 });
               },
-              regEx: r"^[a-zA-z0-9.a-zA-Z0-9.!#$%&'*+-=?^_`{|}~]+\.[a-zA-Z]+",
+              regEx:
+                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
               hintText: "Email",
               obscureText: false,
             ),
@@ -122,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                   _password = _value;
                 });
               },
-              regEx: r".{8,}",
+              regEx: r".{6,}",
               hintText: "Password",
               obscureText: false,
             ),
@@ -136,7 +137,7 @@ class _LoginPageState extends State<LoginPage> {
     return RoundedButton(
         name: "Login",
         height: _deviceHeight * 0.065,
-        width: _deviceHeight * 0.65,
+        width: _deviceWidth * 0.65,
         onPressed: () {
           if (_loginFormKey.currentState!.validate()) {
             if (kDebugMode) {
