@@ -10,14 +10,14 @@ import 'package:cachat/services/cloud_storage_service.dart';
 import 'package:cachat/services/navigation_service.dart';
 //widgets
 
-class registerPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     return _RegisterPageState();
   }
 }
 
-class _RegisterPageState extends State<registerPage> {
+class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return _buildUI();

@@ -154,11 +154,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _registerLink() {
     return GestureDetector(
-      onTap: () {
-        if (kDebugMode) {
-          print("Meaaaaaaaaaaaaaaaaw!");
-        }
-      },
+      onTap: () => _navigation.navigateToRoute('/register'),
       child: const Text(
         'Meaw, Register!',
         style: TextStyle(
