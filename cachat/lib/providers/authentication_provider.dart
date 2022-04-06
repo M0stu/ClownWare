@@ -22,31 +22,34 @@ class AuthenticationProvider extends ChangeNotifier {
     _auth = FirebaseAuth.instance;
     _navigationService = GetIt.instance.get<NavigationService>();
     _databaseService = GetIt.instance.get<DatabaseService>();
-
-    _auth.authStateChanges().listen((_user) {
-      if (_user != null) {
-        print("Logged in");
-        _databaseService.updateUserLastSeenTime(_user.uid);
-        _databaseService.getUser(_user.uid).then(
-          (_snapshot) {
-            Map<String, dynamic> _userData =
-                _snapshot.data()! as Map<String, dynamic>;
-            user = ChatUser.fromJSON(
-              {
-                "uid": _user.uid,
-                "email": _userData["email"],
-                "image": _userData["image"],
-                "last_seen": _userData["last_seen"],
-                "name": _userData["name"],
-              },
-            );
-            _navigationService.removeAndNavigateToRoute('/home');
-          },
-        );
-      } else {
-        _navigationService.removeAndNavigateToRoute('/login');
-      }
-    });
+    _auth.signOut();
+    _auth.authStateChanges().listen(
+      (_user) {
+        if (_user != null) {
+          print("Logged in");
+          _databaseService.updateUserLastSeenTime(_user.uid);
+          _databaseService.getUser(_user.uid).then(
+            (_snapshot) {
+              Map<String, dynamic> _userData =
+                  _snapshot.data()! as Map<String, dynamic>;
+              user = ChatUser.fromJSON(
+                {
+                  "uid": _user.uid,
+                  "email": _userData["email"],
+                  "image": _userData["image"],
+                  "last_seen": _userData["last_seen"],
+                  "name": _userData["name"],
+                },
+              );
+              //print('/home');
+            },
+          );
+          _navigationService.removeAndNavigateToRoute('/home');
+        } else {
+          _navigationService.removeAndNavigateToRoute('/login');
+        }
+      },
+    );
   }
 
   Future<void> loginUsingEmailAndPassword(
