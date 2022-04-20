@@ -21,6 +21,7 @@ import '../providers/authentication_provider.dart';
 //Pages
 
 
+
 class RegisterPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -90,7 +91,7 @@ return GestureDetector(
         } else {
           return RoundedImageNetwork(
             key: UniqueKey(),
-            imagePath: "https://i.pravatar.cc/150?img=65",
+            imagePath: "https://i.pravatar.cc/150?img=66",
             size: _deviceHeight * 0.15,
           );
         }
