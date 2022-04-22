@@ -15,6 +15,7 @@ import './pages/login_page.dart';
 import './pages/home_page.dart';
 import './pages/register_page.dart';
 void main() {
+  
   runApp(
     SplashPage(
       key: UniqueKey(),
@@ -53,9 +54,10 @@ class MainApp extends StatelessWidget {
         routes: {
           '/login': (BuildContext _context) => LoginPage(),
           '/register': (BuildContext _context) => RegisterPage(),
-          '/home': (BuildContext _context) => HomePage(),
+          '/home': (BuildContext _context) => HomePage( ),
         },
       ),
     );
   }
 }
+ 
