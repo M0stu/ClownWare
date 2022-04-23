@@ -1,7 +1,6 @@
 //Packages
-import 'dart:ffi';
 
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 
@@ -26,7 +25,9 @@ class AuthenticationProvider extends ChangeNotifier {
     _auth.authStateChanges().listen(
       (_user) {
         if (_user != null) {
-          print("Logged in");
+          if (kDebugMode) {
+            print("Logged in");
+          }
           _databaseService.updateUserLastSeenTime(_user.uid);
           _databaseService.getUser(_user.uid).then(
             (_snapshot) {
@@ -57,11 +58,43 @@ class AuthenticationProvider extends ChangeNotifier {
     try {
       await _auth.signInWithEmailAndPassword(
           email: _email, password: _password);
-      print(_auth.currentUser);
+      if (kDebugMode) {
+        print(_auth.currentUser);
+      }
     } on FirebaseAuthException {
-      print("Error Logging in Firebase detected ERROR");
+      if (kDebugMode) {
+        print("Error Logging in Firebase detected ERROR");
+      }
     } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
+  }
+  Future<String?> registerUserUsingEmailAndPassword(String _email, String _password)async{
+  try{
+    UserCredential _credentials = await _auth.createUserWithEmailAndPassword(email: _email, password: _password);
+    return _credentials.user!.uid;
+  }on FirebaseAuthException{
+    if (kDebugMode) {
+      print("Error registering user.");
+    }
+  }catch(e){
+    if (kDebugMode) {
       print(e);
     }
   }
+  return null;
+  }
+  Future<void> logout()async{
+    try{
+      await _auth.signOut();
+    }catch(e){
+    if (kDebugMode) {
+      print(e);
+    }
+    }
+  }
+
+
 }

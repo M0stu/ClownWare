@@ -8,7 +8,7 @@ class RoundedImageNetwork extends StatelessWidget
   final String imagePath;
   final double size;
 
-  RoundedImageNetwork({
+  const RoundedImageNetwork({
     required Key key,
     required this.imagePath,
     required this.size,
@@ -37,7 +37,7 @@ class RoundedImageFile extends StatelessWidget {
   final PlatformFile image;
   final double size;
 
-  RoundedImageFile({
+  const RoundedImageFile({
     required Key key,
     required this.image,
     required this.size,
