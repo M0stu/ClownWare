@@ -63,15 +63,15 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 _pageTitle(),
                 SizedBox(
-                  height: _deviceHeight * 0.04,
+                  height: _deviceHeight * 0.08,
                 ),
                 _loginForm(),
                 SizedBox(
-                  height: _deviceHeight * 0.11,
+                  height: _deviceHeight * 0.055,
                 ),
                 _loginButton(),
                 SizedBox(
-                  height: _deviceHeight * 0.02,
+                  height: _deviceHeight * 0.1,
                 ),
                 _registerLink(),
               ],
@@ -83,13 +83,22 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _pageTitle() {
-    return SizedBox(
-      height: _deviceHeight * 0.10,
-      child: const Text(
-        'CaChat',
-        style: TextStyle(
-            color: Colors.white, fontSize: 40, fontWeight: FontWeight.w600),
-      ),
+    return Column(
+      children: const <Widget>[
+        SizedBox(height: 50.0),
+
+        Text(
+          'Welcome Back',
+          style: TextStyle(
+              color: Colors.white, fontSize: 40, fontWeight: FontWeight.w600),
+        ),
+        Text(
+          'Sign in to Continue',
+          style: TextStyle(
+              color: Colors.white, fontSize: 17, fontWeight: FontWeight.w400),
+        ),
+      ],
+
     );
   }
 
@@ -153,14 +162,26 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _registerLink() {
-    return GestureDetector(
-      onTap: () => _navigation.navigateToRoute('/register'),
-      child: const Text(
-        'Meaw, Register!',
-        style: TextStyle(
-          color: Colors.blue,
+    return Row(
+      children: <Widget>[
+        const Text(
+          'Don\'t have an account?',
+          style: TextStyle(
+            fontSize: 15,
+            color: Colors.white,
+          ),
         ),
-      ),
+        TextButton(
+          child: const Text(
+            'Sign up here',
+            style: TextStyle(fontSize: 15),
+          ),
+          onPressed: () {
+            _navigation.navigateToRoute('/register');
+          },
+        )
+      ],
+      mainAxisAlignment: MainAxisAlignment.center,
     );
   }
 }

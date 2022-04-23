@@ -15,7 +15,8 @@ import 'package:cachat/services/navigation_service.dart';
 import '../widgets/custom_input_fields.dart';
 import '../widgets/rounded_button.dart';
 import '../widgets/rounded_image.dart';
-
+import 'package:cachat/widgets/or_divider.dart';
+import 'package:cachat/widgets/social_icon.dart';
 //providers
 import '../providers/authentication_provider.dart';
 
@@ -45,8 +46,8 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     _auth = Provider.of<AuthenticationProvider>(context);
     _db = GetIt.instance.get<DatabaseService>();
-    _cloudStorage=GetIt.instance.get<CloudStorageService>();
-    _navigation=GetIt.instance.get<NavigationService>();
+    _cloudStorage = GetIt.instance.get<CloudStorageService>();
+    _navigation = GetIt.instance.get<NavigationService>();
     _deviceHeight = MediaQuery.of(context).size.height;
     _deviceWidth = MediaQuery.of(context).size.width;
     return _buildUI();
@@ -79,6 +80,8 @@ class _RegisterPageState extends State<RegisterPage> {
             SizedBox(
               height: _deviceHeight * 0.02,
             ),
+            const OrDivider(),
+            _loginWithGoogleOrPhoneNumber(),
           ],
         ),
       ),
@@ -160,16 +163,47 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
+  Widget _loginWithGoogleOrPhoneNumber() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        SocialIcon(
+          iconSrc: "Assets/icons/smartphone.svg",
+          press: () {},
+        ),
+        SocialIcon(
+          iconSrc: "Assets/icons/google.svg",
+          press: () async {
+            // await firebaseAuthBrain.signInWithGoogle();
+            // firebaseAuthBrain.auth
+            //     .authStateChanges()
+            //     .listen((User user) {
+            //   if (user != null) {
+            //     print('User is signed in!');
+            //     Navigator.pushNamed(
+            //         context, HomeScreen.routeName);
+            //   }
+            // });
+          },
+          //key: null,
+        ),
+      ],
+    );
+  }
+
   Widget _registerButton() {
     return RoundedButton(
       name: "Register",
       height: _deviceHeight * 0.065,
       width: _deviceWidth * 0.65,
       onPressed: () async {
-        if(_registerFormKey.currentState!.validate()&&_profileImage!=null){
+        if (_registerFormKey.currentState!.validate() &&
+            _profileImage != null) {
           _registerFormKey.currentState!.save();
-          String? _uid = await _auth.registerUserUsingEmailAndPassword(_email!, _password!);
-          String? _imageURL= await _cloudStorage.saveUserImageToStorage(_uid!, _profileImage!);
+          String? _uid = await _auth.registerUserUsingEmailAndPassword(
+              _email!, _password!);
+          String? _imageURL =
+              await _cloudStorage.saveUserImageToStorage(_uid!, _profileImage!);
           await _db.createUser(_uid, _email!, _name!, _imageURL!);
           _navigation.goBack();
           await _auth.logout();
