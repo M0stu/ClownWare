@@ -63,11 +63,11 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 _pageTitle(),
                 SizedBox(
-                  height: _deviceHeight * 0.08,
+                  height: _deviceHeight * 0.05,
                 ),
                 _loginForm(),
                 SizedBox(
-                  height: _deviceHeight * 0.055,
+                  height: _deviceHeight * 0.05,
                 ),
                 _loginButton(),
                 SizedBox(
@@ -84,21 +84,29 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _pageTitle() {
     return Column(
-      children: const <Widget>[
-        SizedBox(height: 50.0),
-
-        Text(
-          'Welcome Back',
+      children: <Widget>[
+        Container(
+          height: 130,
+          width: 130,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              fit: BoxFit.contain,
+              image: AssetImage('Assets/img/cat_icon-01.png'),
+            ),
+          ),
+        ),
+        //SizedBox(height: 50.0),
+        const Text(
+          'Welcome Back!',
           style: TextStyle(
               color: Colors.white, fontSize: 40, fontWeight: FontWeight.w600),
         ),
-        Text(
+        const Text(
           'Sign in to Continue',
           style: TextStyle(
               color: Colors.white, fontSize: 17, fontWeight: FontWeight.w400),
         ),
       ],
-
     );
   }
 
@@ -124,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
               obscureText: false,
             ),
             SizedBox(
-              height: _deviceHeight * 0.05,
+              height: _deviceHeight * 0.035,
             ),
             CustomTextFormField(
               onSaved: (_value) {

@@ -48,7 +48,7 @@ class _SplashPageState extends State<SplashPage> {
         debugShowCheckedModeBanner: false,
         title: 'Cachat',
         theme: ThemeData(
-          backgroundColor: const Color.fromRGBO(36, 35, 49, 1.0),
+          backgroundColor: const Color.fromRGBO(30, 35, 49, 1.0),
           scaffoldBackgroundColor: const Color.fromRGBO(36, 35, 49, 1.0),
         ),
         home: Scaffold(

@@ -17,6 +17,7 @@ import '../widgets/rounded_button.dart';
 import '../widgets/rounded_image.dart';
 import 'package:cachat/widgets/or_divider.dart';
 import 'package:cachat/widgets/social_icon.dart';
+
 //providers
 import '../providers/authentication_provider.dart';
 
@@ -55,34 +56,55 @@ class _RegisterPageState extends State<RegisterPage> {
 
   Widget _buildUI() {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: _deviceWidth * 0.03,
-          vertical: _deviceHeight * 0.02,
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios),
+          color: Colors.white,
+          onPressed: () => _navigation.navigateToRoute('/login'),
         ),
-        height: _deviceHeight * 0.98,
-        width: _deviceWidth * 0.97,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            _profileImageField(),
-            SizedBox(
-              height: _deviceHeight * 0.05,
+        backgroundColor:
+            Colors.blue.withOpacity(0), //You can make this transparent
+        elevation: 0.0, //No shadow
+      ),
+      resizeToAvoidBottomInset: false,
+      body: Center(
+        child: SingleChildScrollView(
+          reverse: true,
+          padding: const EdgeInsets.all(35),
+          child: Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: _deviceWidth * 0.03,
+              vertical: _deviceHeight * 0.02,
             ),
-            _registerForm(),
-            SizedBox(
-              height: _deviceHeight * 0.05,
+            height: _deviceHeight * 0.98,
+            width: _deviceWidth * 0.97,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                //_profileImageField(),
+                _pageTitle(),
+                SizedBox(
+                  height: _deviceHeight * 0.03,
+                ),
+                _registerForm(),
+                SizedBox(
+                  height: _deviceHeight * 0.03,
+                ),
+                _registerButton(),
+                SizedBox(
+                  height: _deviceHeight * 0.015,
+                ),
+                const OrDivider(),
+                _loginWithGoogleOrPhoneNumber(),
+                SizedBox(
+                  height: _deviceHeight * 0.02,
+                ),
+                //_loginLink(),
+              ],
             ),
-            _registerButton(),
-            SizedBox(
-              height: _deviceHeight * 0.02,
-            ),
-            const OrDivider(),
-            _loginWithGoogleOrPhoneNumber(),
-          ],
+          ),
         ),
       ),
     );
@@ -136,7 +158,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   });
                 },
                 regEx: r'.{8,}',
-                hintText: "Name",
+                hintText: "Username",
                 obscureText: false),
             CustomTextFormField(
                 onSaved: (_value) {
@@ -149,14 +171,25 @@ class _RegisterPageState extends State<RegisterPage> {
                 hintText: "Email",
                 obscureText: false),
             CustomTextFormField(
-                onSaved: (_value) {
-                  setState(() {
-                    _password = _value;
-                  });
-                },
-                regEx: r".{8,}",
-                hintText: "Password",
-                obscureText: true),
+              onSaved: (_value) {
+                setState(() {
+                  _password = _value;
+                });
+              },
+              regEx: r".{8,}",
+              hintText: "Password",
+              obscureText: true,
+            ),
+            // CustomTextFormField(
+            //   onSaved: (_value) {
+            //     setState(() {
+            //       //_password = _value;
+            //     });
+            //   },
+            //   regEx: r".{8,}",
+            //   hintText: "Confirm Password",
+            //   obscureText: true,
+            // ),
           ],
         ),
       ),
@@ -168,7 +201,7 @@ class _RegisterPageState extends State<RegisterPage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         SocialIcon(
-          iconSrc: "Assets/icons/smartphone.svg",
+          iconSrc: "Assets/icons/facebook.svg",
           press: () {},
         ),
         SocialIcon(
@@ -185,7 +218,6 @@ class _RegisterPageState extends State<RegisterPage> {
             //   }
             // });
           },
-          //key: null,
         ),
       ],
     );
@@ -210,6 +242,57 @@ class _RegisterPageState extends State<RegisterPage> {
           await _auth.loginUsingEmailAndPassword(_email!, _password!);
         }
       },
+    );
+  }
+
+  Widget _pageTitle() {
+    return Column(
+      children: <Widget>[
+        Container(
+          height: 130,
+          width: 130,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              fit: BoxFit.contain,
+              image: AssetImage('Assets/img/cat_icon-01.png'),
+            ),
+          ),
+        ),
+        const Text(
+          'Welcome!',
+          style: TextStyle(
+              color: Colors.white, fontSize: 40, fontWeight: FontWeight.w600),
+        ),
+        const Text(
+          'Create Your Account',
+          style: TextStyle(
+              color: Colors.white, fontSize: 17, fontWeight: FontWeight.w400),
+        ),
+      ],
+    );
+  }
+
+  Widget _loginLink() {
+    return Row(
+      children: <Widget>[
+        const Text(
+          'Already have an account?',
+          style: TextStyle(
+            fontSize: 15,
+            color: Colors.white,
+          ),
+        ),
+        TextButton(
+          child: const Text(
+            'Sign in here',
+            style: TextStyle(fontSize: 15),
+          ),
+          onPressed: () {
+            _navigation.navigateToRoute('/login');
+          },
+        )
+      ],
+      mainAxisAlignment: MainAxisAlignment.center,
     );
   }
 }
