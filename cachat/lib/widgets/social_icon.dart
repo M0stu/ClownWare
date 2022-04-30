@@ -3,10 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class SocialIcon extends StatelessWidget {
   final String iconSrc;
-  final Function press;
+  //final Function press;
   const SocialIcon({
     required this.iconSrc,
-    required this.press,
+    //  required this.press,
   });
 
   @override

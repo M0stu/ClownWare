@@ -9,7 +9,6 @@ import 'package:cachat/services/media_service.dart';
 import 'package:cachat/services/database_service.dart';
 import 'package:cachat/services/cloud_storage_service.dart';
 import 'package:cachat/services/navigation_service.dart';
-//providers
 
 //Widgets
 import '../widgets/custom_input_fields.dart';
@@ -200,25 +199,49 @@ class _RegisterPageState extends State<RegisterPage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        SocialIcon(
-          iconSrc: "Assets/icons/facebook.svg",
-          press: () {},
+        RoundedButton(
+            name: "F",
+            height: 60.5,
+            width: 30.5,
+            onPressed: () async {
+              final userCredential = await _auth.signInWithFacebook();
+              if (userCredential != null) {
+                final idToken = userCredential.user!.getIdToken();
+                print(idToken);
+                print("User Logged in");
+              }
+            }),
+        SizedBox(
+          width: _deviceWidth * 0.15,
         ),
-        SocialIcon(
-          iconSrc: "Assets/icons/google.svg",
-          press: () async {
-            // await firebaseAuthBrain.signInWithGoogle();
-            // firebaseAuthBrain.auth
-            //     .authStateChanges()
-            //     .listen((User user) {
-            //   if (user != null) {
-            //     print('User is signed in!');
-            //     Navigator.pushNamed(
-            //         context, HomeScreen.routeName);
-            //   }
-            // });
-          },
-        ),
+        RoundedButton(
+            name: "G",
+            height: 60.5,
+            width: 30.5,
+            onPressed: () {
+              print("Shi Hong wo de Peng You <3");
+            }),
+        // SocialIcon(
+        //   iconSrc: "Assets/icons/facebook.svg",
+        //   press: () async {
+        //     print("hi");
+        //   },
+        // ),
+        // SocialIcon(
+        // iconSrc: "Assets/icons/google.svg",
+        // press: () async {
+        // await firebaseAuthBrain.signInWithGoogle();
+        // firebaseAuthBrain.auth
+        //     .authStateChanges()
+        //     .listen((User user) {
+        //   if (user != null) {
+        //     print('User is signed in!');
+        //     Navigator.pushNamed(
+        //         context, HomeScreen.routeName);
+        //   }
+        // });
+        // },
+        // ),
       ],
     );
   }
@@ -229,8 +252,8 @@ class _RegisterPageState extends State<RegisterPage> {
       height: _deviceHeight * 0.065,
       width: _deviceWidth * 0.65,
       onPressed: () async {
-        if (_registerFormKey.currentState!.validate() &&
-            _profileImage != null) {
+        if (_registerFormKey.currentState!
+            .validate() /*&& _profileImage != null*/) {
           _registerFormKey.currentState!.save();
           String? _uid = await _auth.registerUserUsingEmailAndPassword(
               _email!, _password!);

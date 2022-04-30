@@ -7,6 +7,7 @@ import 'package:get_it/get_it.dart';
 //Services
 import '../services/database_service.dart';
 import '../services/navigation_service.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 //Models
 import '../model/chat_user.dart';
@@ -71,30 +72,55 @@ class AuthenticationProvider extends ChangeNotifier {
       }
     }
   }
-  Future<String?> registerUserUsingEmailAndPassword(String _email, String _password)async{
-  try{
-    UserCredential _credentials = await _auth.createUserWithEmailAndPassword(email: _email, password: _password);
-    return _credentials.user!.uid;
-  }on FirebaseAuthException{
-    if (kDebugMode) {
-      print("Error registering user.");
+
+  Future<String?> registerUserUsingEmailAndPassword(
+      String _email, String _password) async {
+    try {
+      UserCredential _credentials = await _auth.createUserWithEmailAndPassword(
+          email: _email, password: _password);
+      return _credentials.user!.uid;
+    } on FirebaseAuthException {
+      if (kDebugMode) {
+        print("Error registering user.");
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
     }
-  }catch(e){
-    if (kDebugMode) {
-      print(e);
-    }
+    return null;
   }
-  return null;
-  }
-  Future<void> logout()async{
-    try{
+
+  Future<void> logout() async {
+    try {
       await _auth.signOut();
-    }catch(e){
-    if (kDebugMode) {
-      print(e);
-    }
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
     }
   }
 
+  Future<UserCredential?> signInWithFacebook() async {
+    final LoginResult loginResult = await FacebookAuth.instance.login();
 
+    if (loginResult.status == LoginStatus.success) {
+      final AccessToken accessToken = loginResult.accessToken!;
+      final OAuthCredential credential =
+          FacebookAuthProvider.credential(accessToken.token);
+      try {
+        return await FirebaseAuth.instance.signInWithCredential(credential);
+      } on FirebaseAuthException catch (e) {
+        // manage Firebase authentication exceptions
+
+        print(e);
+        print("Firebase Error");
+        rethrow;
+      } catch (e) {
+        // manage other exceptions
+        print(e);
+        rethrow;
+      }
+    }
+  }
 }
