@@ -1,7 +1,9 @@
 //Packages
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get_it/get_it.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 
 //Services
@@ -41,7 +43,7 @@ class _RegisterPageState extends State<RegisterPage> {
   String? _name;
   PlatformFile? _profileImage;
   final _registerFormKey = GlobalKey<FormState>();
-
+  late GoogleSignInAccount userObj;
   @override
   Widget build(BuildContext context) {
     _auth = Provider.of<AuthenticationProvider>(context);
@@ -199,49 +201,34 @@ class _RegisterPageState extends State<RegisterPage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        RoundedButton(
-            name: "F",
-            height: 60.5,
-            width: 30.5,
-            onPressed: () async {
-              final userCredential = await _auth.signInWithFacebook();
-              if (userCredential != null) {
-                final idToken = userCredential.user!.getIdToken();
-                print(idToken);
-                print("User Logged in");
-              }
-            }),
+        SocialIcon(
+          iconSrc: "Assets/icons/facebook.svg",
+          press: () async {
+            final userCredential = await _auth.signInWithFacebook();
+            if (userCredential != null) {
+              final idToken = userCredential.user!.getIdToken();
+              print(idToken);
+              print("User Logged in");
+            }
+          },
+        ),
         SizedBox(
           width: _deviceWidth * 0.15,
         ),
-        RoundedButton(
-            name: "G",
-            height: 60.5,
-            width: 30.5,
-            onPressed: () {
+        SocialIcon(
+          iconSrc: "Assets/icons/google.svg",
+          press: () async {
+            await GoogleSignIn().signIn().then((value) {
+              setState(() {
+                userObj = value!;
+              });
+            });
+            _navigation.navigateToRoute('/home');
+            if (kDebugMode) {
               print("Shi Hong wo de Peng You <3");
-            }),
-        // SocialIcon(
-        //   iconSrc: "Assets/icons/facebook.svg",
-        //   press: () async {
-        //     print("hi");
-        //   },
-        // ),
-        // SocialIcon(
-        // iconSrc: "Assets/icons/google.svg",
-        // press: () async {
-        // await firebaseAuthBrain.signInWithGoogle();
-        // firebaseAuthBrain.auth
-        //     .authStateChanges()
-        //     .listen((User user) {
-        //   if (user != null) {
-        //     print('User is signed in!');
-        //     Navigator.pushNamed(
-        //         context, HomeScreen.routeName);
-        //   }
-        // });
-        // },
-        // ),
+            }
+          },
+        ),
       ],
     );
   }

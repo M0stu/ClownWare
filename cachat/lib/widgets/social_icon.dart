@@ -3,16 +3,16 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class SocialIcon extends StatelessWidget {
   final String iconSrc;
-  //final Function press;
+  final Function press;
   const SocialIcon({
     required this.iconSrc,
-    //  required this.press,
+    required this.press,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      //onTap: press,
+      onTap: () => press(),
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 10),
         padding: const EdgeInsets.all(20),

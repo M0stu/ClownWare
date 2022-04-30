@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "601859705993-njdj2phfgmmq76pf3f3das1utrs3dmhd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cachat",
+            "certificate_hash": "3e04fb589abbac5631babea35c2bc8a584c7acfc"
+          }
+        },
+        {
           "client_id": "601859705993-6l2hi00pebfbgh4lsmduigaivatd6m24.apps.googleusercontent.com",
           "client_type": 3
         }

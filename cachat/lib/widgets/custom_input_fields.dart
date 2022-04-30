@@ -6,11 +6,12 @@ class CustomTextFormField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
 
-  CustomTextFormField(
-      {required this.onSaved,
-      required this.regEx,
-      required this.hintText,
-      required this.obscureText});
+  CustomTextFormField({
+    required this.onSaved,
+    required this.regEx,
+    required this.hintText,
+    required this.obscureText,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +24,10 @@ class CustomTextFormField extends StatelessWidget {
         return RegExp(regEx).hasMatch(_value!) ? null : 'Enter a valid value.';
       },
       decoration: InputDecoration(
+        icon: const Icon(
+          Icons.lock,
+          color: Colors.white,
+        ),
         fillColor: const Color.fromRGBO(30, 29, 37, 1.0),
         filled: true,
         border: OutlineInputBorder(
