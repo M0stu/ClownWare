@@ -18,7 +18,7 @@ class DatabaseService {
         {
           "email": _email,
           "image": _imageURL,
-          "last_active": DateTime.now().toUtc(),
+          "last_seen": DateTime.now().toUtc(),
           "name": _name,
         },
       );

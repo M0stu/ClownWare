@@ -7,6 +7,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 
 const String USER_COLLECTION = "Users";
+var rules_version = '2';
 
 class CloudStorageService {
   final FirebaseStorage _storage = FirebaseStorage.instance;
@@ -30,17 +31,20 @@ class CloudStorageService {
       }
     }
   }
-  Future <String?> saveChatImageToStorage(String _chatID,String _userID,PlatformFile _file ) async{
-    try{
-      Reference _ref= _storage.ref().child('images/chats/$_chatID/${_userID}_${Timestamp.now().millisecondsSinceEpoch}.${_file.extension}');
+
+  Future<String?> saveChatImageToStorage(
+      String _chatID, String _userID, PlatformFile _file) async {
+    try {
+      Reference _ref = _storage.ref().child(
+          'images/chats/$_chatID/${_userID}_${Timestamp.now().millisecondsSinceEpoch}.${_file.extension}');
       UploadTask _task = _ref.putFile(
         File(_file.path),
       );
       return await _task.then(
-            (_result) => _result.ref.getDownloadURL(),
+        (_result) => _result.ref.getDownloadURL(),
       );
-    }catch(e){
-
+    } catch (e) {
+      print(e);
     }
   }
 }
