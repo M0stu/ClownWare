@@ -7,7 +7,6 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 
 const String USER_COLLECTION = "Users";
-var rules_version = '2';
 
 class CloudStorageService {
   final FirebaseStorage _storage = FirebaseStorage.instance;

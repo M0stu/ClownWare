@@ -3,8 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 
 const String USER_COLLECTION = "Users";
-const String CHAT_COLLECTION = "chats";
-const String MESSAGES_COLLECTION = "messages";
+const String CHAT_COLLECTION = "Chats";
+const String MESSAGES_COLLECTION = "Messages";
 
 class DatabaseService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
@@ -18,7 +18,7 @@ class DatabaseService {
         {
           "email": _email,
           "image": _imageURL,
-          "last_seen": DateTime.now().toUtc(),
+          "last_active": DateTime.now().toUtc(),
           "name": _name,
         },
       );
@@ -54,7 +54,7 @@ class DatabaseService {
     try {
       await _db.collection(USER_COLLECTION).doc(_uid).update(
         {
-          "last_seen": DateTime.now().toUtc(),
+          "last_active": DateTime.now().toUtc(),
         },
       );
     } catch (e) {

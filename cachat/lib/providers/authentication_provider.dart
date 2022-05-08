@@ -22,12 +22,12 @@ class AuthenticationProvider extends ChangeNotifier {
     _auth = FirebaseAuth.instance;
     _navigationService = GetIt.instance.get<NavigationService>();
     _databaseService = GetIt.instance.get<DatabaseService>();
-    _auth.signOut();
+    //_auth.signOut();
     _auth.authStateChanges().listen(
       (_user) {
         if (_user != null) {
           if (kDebugMode) {
-            print("Logged in");
+            //print("Logged in");
           }
           _databaseService.updateUserLastSeenTime(_user.uid);
           _databaseService.getUser(_user.uid).then(
@@ -39,7 +39,7 @@ class AuthenticationProvider extends ChangeNotifier {
                   "uid": _user.uid,
                   "email": _userData["email"],
                   "image": _userData["image"],
-                  "last_seen": _userData["last_seen"],
+                  "last_active": _userData["last_active"],
                   "name": _userData["name"],
                 },
               );
@@ -81,7 +81,8 @@ class AuthenticationProvider extends ChangeNotifier {
       return _credentials.user!.uid;
     } on FirebaseAuthException {
       if (kDebugMode) {
-        print("Error registering user.");
+        print(
+            "Error registering user. FireeeeeeeBAAAAAAAAAAAAAAAAAAAAAAAAAAAASEEE hereeeeee");
       }
     } catch (e) {
       if (kDebugMode) {

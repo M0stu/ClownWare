@@ -19,14 +19,14 @@ class ChatUser {
       name: _json["name"],
       email: _json["email"],
       imageURL: _json["image"],
-      lastSeen: _json["last_seen"].toDate(),
+      lastSeen: _json["last_active"].toDate(),
     );
   }
   Map<String, dynamic> toMap() {
     return {
       "email": email,
       "name": name,
-      "lastSeen": lastSeen,
+      "last_active": lastSeen,
       "image": imageURL,
     };
   }

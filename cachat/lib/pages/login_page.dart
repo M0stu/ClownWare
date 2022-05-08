@@ -71,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 _loginButton(),
                 SizedBox(
-                  height: _deviceHeight * 0.1,
+                  height: _deviceHeight * 0.05,
                 ),
                 _registerLink(),
               ],
