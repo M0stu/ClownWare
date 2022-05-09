@@ -194,12 +194,6 @@ class _LoginPageState extends State<LoginPage> {
               print(idToken);
               print("User Logged in");
             }
-            // await FirebaseFirestore.instance.collection('Users').add({
-            //   "email": userCredential,
-            //   "image": _imageURL,
-            //   "last_active": DateTime.now().toUtc(),
-            //   "name": _name,
-            // });
           },
         ),
         SizedBox(
