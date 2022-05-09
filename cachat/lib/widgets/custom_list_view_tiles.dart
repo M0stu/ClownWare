@@ -19,7 +19,6 @@ class CustomListViewTileWithActivity extends StatelessWidget {
   final bool isActivity;
 
   final Function onTap;
-
   CustomListViewTileWithActivity({
     required this.height,
     required this.title,

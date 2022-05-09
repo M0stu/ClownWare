@@ -15,7 +15,7 @@ class OrDivider extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: Text(
-              'OR Sign up With',
+              'OR Sign in With',
               style: TextStyle(
                 color: Color(0xFFD9D9D9),
                 fontWeight: FontWeight.w600,

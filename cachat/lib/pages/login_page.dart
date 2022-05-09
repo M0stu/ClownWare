@@ -1,11 +1,15 @@
 //Packages
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:get_it/get_it.dart';
 
 //Widgets
 import '../widgets/custom_input_fields.dart';
+import '../widgets/or_divider.dart';
 import '../widgets/rounded_button.dart';
 
 //providers
@@ -13,6 +17,7 @@ import '../providers/authentication_provider.dart';
 
 //Services
 import '../services/navigation_service.dart';
+import '../widgets/social_icon.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -29,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
   late NavigationService _navigation;
 
   final _loginFormKey = GlobalKey<FormState>();
-
+  late GoogleSignInAccount userObj;
   String? _email;
   String? _password;
 
@@ -71,7 +76,12 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 _loginButton(),
                 SizedBox(
-                  height: _deviceHeight * 0.05,
+                  height: _deviceHeight * 0.02,
+                ),
+                const OrDivider(),
+                _loginWithGoogleOrFacebook(),
+                SizedBox(
+                  height: _deviceHeight * 0.02,
                 ),
                 _registerLink(),
               ],
@@ -130,6 +140,7 @@ class _LoginPageState extends State<LoginPage> {
                   r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
               hintText: "Email",
               obscureText: false,
+              icon: Icons.email,
             ),
             SizedBox(
               height: _deviceHeight * 0.035,
@@ -143,6 +154,7 @@ class _LoginPageState extends State<LoginPage> {
               regEx: r".{6,}",
               hintText: "Password",
               obscureText: false,
+              icon: Icons.lock,
             ),
           ],
         ),
@@ -167,6 +179,48 @@ class _LoginPageState extends State<LoginPage> {
             }
           }
         });
+  }
+
+  Widget _loginWithGoogleOrFacebook() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        SocialIcon(
+          iconSrc: "Assets/icons/facebook.svg",
+          press: () async {
+            final userCredential = await _auth.signInWithFacebook();
+            if (userCredential != null) {
+              final idToken = userCredential.user!.getIdToken();
+              print(idToken);
+              print("User Logged in");
+            }
+            // await FirebaseFirestore.instance.collection('Users').add({
+            //   "email": userCredential,
+            //   "image": _imageURL,
+            //   "last_active": DateTime.now().toUtc(),
+            //   "name": _name,
+            // });
+          },
+        ),
+        SizedBox(
+          width: _deviceWidth * 0.15,
+        ),
+        SocialIcon(
+          iconSrc: "Assets/icons/google.svg",
+          press: () async {
+            await GoogleSignIn().signIn().then((value) {
+              setState(() {
+                userObj = value!;
+              });
+            });
+            _navigation.navigateToRoute('/home');
+            if (kDebugMode) {
+              print("Shi Hong wo de Peng You <3");
+            }
+          },
+        ),
+      ],
+    );
   }
 
   Widget _registerLink() {

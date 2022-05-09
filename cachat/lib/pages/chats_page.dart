@@ -4,14 +4,23 @@ import 'package:provider/provider.dart';
 import 'package:get_it/get_it.dart';
 
 //Provider
+import '../model/chat_user.dart';
 import '../providers/authentication_provider.dart';
 import '../providers/chats_page_provider.dart';
+
+//Services
+import '../services/navigation_service.dart';
+import '../services/database_service.dart';
+//Pages
+import '../pages/chat_page.dart';
 
 //Widgets
 import '../widgets/top_bar.dart';
 import '../widgets/custom_list_view_tiles.dart';
+
 //Models
 import '../model/chat.dart';
+import '../model/chat_user.dart';
 
 class ChatsPage extends StatefulWidget {
   @override
@@ -23,7 +32,7 @@ class ChatsPage extends StatefulWidget {
 class _ChatsPageState extends State<ChatsPage> {
   late double _deviceHeight;
   late double _deviceWidth;
-
+  late NavigationService _navigation;
   late AuthenticationProvider _auth;
   late ChatsPageProvider _pageProvider;
 
@@ -33,7 +42,7 @@ class _ChatsPageState extends State<ChatsPage> {
     _deviceWidth = MediaQuery.of(context).size.width;
 
     _auth = Provider.of<AuthenticationProvider>(context);
-
+    _navigation = GetIt.instance.get<NavigationService>();
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<ChatsPageProvider>(
@@ -87,16 +96,19 @@ class _ChatsPageState extends State<ChatsPage> {
         if (_chats != null) {
           if (_chats.length != 0) {
             return ListView.builder(
-                itemCount: _chats.length,
-                itemBuilder: (BuildContext _context, int _index) {
-                  return _chatTile();
-                });
+              itemCount: _chats.length,
+              itemBuilder: (BuildContext _context, int _index) {
+                return _chatTile(
+                  _chats[_index],
+                );
+              },
+            );
           } else {
             return const Center(
-              child: CircularProgressIndicator(
-                color: Colors.white,
-              ),
-            );
+                child: Text(
+              "No Chats Found.",
+              style: TextStyle(color: Colors.white),
+            ));
           }
         } else {
           return const Center(
@@ -109,7 +121,9 @@ class _ChatsPageState extends State<ChatsPage> {
     );
   }
 
-  Widget _chatTile() {
+  Widget _chatTile(Chat _chat) {
+    List<ChatUser> _recepients = _chat.recepients();
+    bool _isActive = _recepients.any((_d) => _d.wasRecentlyActive());
     return CustomListViewTileWithActivity(
         height: _deviceHeight * 0.10,
         title: "Hextech",
@@ -118,6 +132,10 @@ class _ChatsPageState extends State<ChatsPage> {
             "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.dreamstime.com%2Fhappy-smiling-geek-hipster-beard-man-cool-avatar-geek-man-avatar-image104871313&psig=AOvVaw0cyyyEDYDOLipEdmKIGB29&ust=1651758688062000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCPixtMf-xfcCFQAAAAAdAAAAABAJ",
         isActive: false,
         isActivity: false,
-        onTap: () {});
+        onTap: () {
+          _navigation.navigateToPage(
+            ChatPage(chat: _chat),
+          );
+        });
   }
 }

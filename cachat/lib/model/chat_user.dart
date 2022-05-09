@@ -48,7 +48,7 @@ class ChatUser {
     }
   }
 
-  bool wasActive() {
+  bool wasRecentlyActive() {
     return DateTime.now().difference(lastSeen).inHours < 2;
   }
 }

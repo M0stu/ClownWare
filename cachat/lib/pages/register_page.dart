@@ -43,7 +43,7 @@ class _RegisterPageState extends State<RegisterPage> {
   String? _name;
   PlatformFile? _profileImage;
   final _registerFormKey = GlobalKey<FormState>();
-  late GoogleSignInAccount userObj;
+  //late GoogleSignInAccount userObj;
   @override
   Widget build(BuildContext context) {
     _auth = Provider.of<AuthenticationProvider>(context);
@@ -97,8 +97,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 SizedBox(
                   height: _deviceHeight * 0.015,
                 ),
-                //const OrDivider(),
-                //_loginWithGoogleOrPhoneNumber(),
+
                 SizedBox(
                   height: _deviceHeight * 0.02,
                 ),
@@ -153,24 +152,28 @@ class _RegisterPageState extends State<RegisterPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CustomTextFormField(
-                onSaved: (_value) {
-                  setState(() {
-                    _name = _value;
-                  });
-                },
-                regEx: r'.{8,}',
-                hintText: "Username",
-                obscureText: false),
+              onSaved: (_value) {
+                setState(() {
+                  _name = _value;
+                });
+              },
+              regEx: r'.{8,}',
+              hintText: "Username",
+              obscureText: false,
+              icon: Icons.supervised_user_circle,
+            ),
             CustomTextFormField(
-                onSaved: (_value) {
-                  setState(() {
-                    _email = _value;
-                  });
-                },
-                regEx:
-                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
-                hintText: "Email",
-                obscureText: false),
+              onSaved: (_value) {
+                setState(() {
+                  _email = _value;
+                });
+              },
+              regEx:
+                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+              hintText: "Email",
+              obscureText: false,
+              icon: Icons.email,
+            ),
             CustomTextFormField(
               onSaved: (_value) {
                 setState(() {
@@ -180,6 +183,7 @@ class _RegisterPageState extends State<RegisterPage> {
               regEx: r".{8,}",
               hintText: "Password",
               obscureText: true,
+              icon: Icons.lock,
             ),
             // CustomTextFormField(
             //   onSaved: (_value) {
@@ -196,42 +200,6 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     );
   }
-
-  // Widget _loginWithGoogleOrPhoneNumber() {
-  //   return Row(
-  //     mainAxisAlignment: MainAxisAlignment.center,
-  //     children: <Widget>[
-  //       SocialIcon(
-  //         iconSrc: "Assets/icons/facebook.svg",
-  //         press: () async {
-  //           final userCredential = await _auth.signInWithFacebook();
-  //           if (userCredential != null) {
-  //             final idToken = userCredential.user!.getIdToken();
-  //             print(idToken);
-  //             print("User Logged in");
-  //           }
-  //         },
-  //       ),
-  //       SizedBox(
-  //         width: _deviceWidth * 0.15,
-  //       ),
-  //       SocialIcon(
-  //         iconSrc: "Assets/icons/google.svg",
-  //         press: () async {
-  //           await GoogleSignIn().signIn().then((value) {
-  //             setState(() {
-  //               userObj = value!;
-  //             });
-  //           });
-  //           _navigation.navigateToRoute('/home');
-  //           if (kDebugMode) {
-  //             print("Shi Hong wo de Peng You <3");
-  //           }
-  //         },
-  //       ),
-  //     ],
-  //   );
-  // }
 
   Widget _registerButton() {
     return RoundedButton(
