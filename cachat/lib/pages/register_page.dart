@@ -1,9 +1,7 @@
 //Packages
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:get_it/get_it.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 
 //Services
@@ -13,7 +11,9 @@ import 'package:cachat/services/cloud_storage_service.dart';
 import 'package:cachat/services/navigation_service.dart';
 
 //Widgets
+import '../widgets/custom_Einput_fields.dart';
 import '../widgets/custom_input_fields.dart';
+import '../widgets/custom_passInput_fields.dart';
 import '../widgets/rounded_button.dart';
 import '../widgets/rounded_image.dart';
 import 'package:cachat/widgets/or_divider.dart';
@@ -43,6 +43,7 @@ class _RegisterPageState extends State<RegisterPage> {
   String? _name;
   PlatformFile? _profileImage;
   final _registerFormKey = GlobalKey<FormState>();
+
   //late GoogleSignInAccount userObj;
   @override
   Widget build(BuildContext context) {
@@ -91,12 +92,12 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 _registerForm(),
                 SizedBox(
-                  height: _deviceHeight * 0.03,
+                  height: _deviceHeight * 0.04,
                 ),
                 _registerButton(),
-                SizedBox(
-                  height: _deviceHeight * 0.015,
-                ),
+                // SizedBox(
+                //   height: _deviceHeight * 0.015,
+                // ),
 
                 //_loginLink(),
               ],
@@ -139,8 +140,8 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Widget _registerForm() {
-    return Container(
-      height: _deviceHeight * 0.4,
+    return SizedBox(
+      height: _deviceHeight * 0.2765,
       child: Form(
         key: _registerFormKey,
         child: Column(
@@ -159,7 +160,10 @@ class _RegisterPageState extends State<RegisterPage> {
               obscureText: false,
               icon: Icons.supervised_user_circle,
             ),
-            CustomTextFormField(
+            SizedBox(
+              height: _deviceHeight * 0.020,
+            ),
+            CustomEmailFormField(
               onSaved: (_value) {
                 setState(() {
                   _email = _value;
@@ -169,9 +173,11 @@ class _RegisterPageState extends State<RegisterPage> {
                   r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
               hintText: "Email",
               obscureText: false,
-              icon: Icons.email,
             ),
-            CustomTextFormField(
+            SizedBox(
+              height: _deviceHeight * 0.020,
+            ),
+            CustomPassFormField(
               onSaved: (_value) {
                 setState(() {
                   _password = _value;
@@ -180,7 +186,6 @@ class _RegisterPageState extends State<RegisterPage> {
               regEx: r".{8,}",
               hintText: "Password",
               obscureText: true,
-              icon: Icons.lock,
             ),
             // CustomTextFormField(
             //   onSaved: (_value) {

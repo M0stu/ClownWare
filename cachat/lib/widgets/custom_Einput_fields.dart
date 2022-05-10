@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 
-class CustomTextFormField extends StatelessWidget {
+class CustomEmailFormField extends StatelessWidget {
   final Function(String) onSaved;
   final String regEx;
   final String hintText;
   final bool obscureText;
-  final IconData icon;
-  CustomTextFormField({
+
+  CustomEmailFormField({
     required this.onSaved,
     required this.regEx,
     required this.hintText,
     required this.obscureText,
-    required this.icon,
   });
 
   @override
@@ -29,7 +28,7 @@ class CustomTextFormField extends StatelessWidget {
           ),
           height: 65.0,
           child: TextFormField(
-            keyboardType: TextInputType.name,
+            keyboardType: TextInputType.emailAddress,
             onSaved: (_value) => onSaved(_value!),
             cursorColor: Colors.white,
             style: const TextStyle(color: Colors.white),
@@ -37,11 +36,12 @@ class CustomTextFormField extends StatelessWidget {
             validator: (_value) {
               return RegExp(regEx).hasMatch(_value!)
                   ? null
-                  : 'Enter a valid Username.';
+                  : 'Enter a valid value.';
             },
             decoration: InputDecoration(
-              prefixIcon: Icon(
-                icon,
+              contentPadding: const EdgeInsets.only(top: 14.0),
+              prefixIcon: const Icon(
+                Icons.email,
                 color: Colors.white,
               ),
               border: InputBorder.none,

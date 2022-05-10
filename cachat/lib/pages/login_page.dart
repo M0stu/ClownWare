@@ -8,7 +8,8 @@ import 'package:provider/provider.dart';
 import 'package:get_it/get_it.dart';
 
 //Widgets
-import '../widgets/custom_input_fields.dart';
+import '../widgets/custom_Einput_fields.dart';
+import '../widgets/custom_passInput_fields.dart';
 import '../widgets/or_divider.dart';
 import '../widgets/rounded_button.dart';
 
@@ -72,14 +73,13 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 _loginForm(),
                 SizedBox(
-                  height: _deviceHeight * 0.07,
+                  height: _deviceHeight * 0.022,
                 ),
                 _loginButton(),
-                SizedBox(
-                  height: _deviceHeight * 0.03,
-                ),
                 // const OrDivider(),
                 // _loginWithGoogleOrFacebook(),
+
+                //_loginWithGoogleOrFacebook(),
                 SizedBox(
                   height: _deviceHeight * 0.03,
                 ),
@@ -130,9 +130,10 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            CustomTextFormField(
+            CustomEmailFormField(
               onSaved: (_value) {
                 setState(() {
+                  print(_value);
                   _email = _value;
                 });
               },
@@ -140,21 +141,20 @@ class _LoginPageState extends State<LoginPage> {
                   r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
               hintText: "Email",
               obscureText: false,
-              icon: Icons.email,
             ),
             SizedBox(
-              height: _deviceHeight * 0.03,
+              height: _deviceHeight * 0.020,
             ),
-            CustomTextFormField(
+            CustomPassFormField(
               onSaved: (_value) {
                 setState(() {
                   _password = _value;
+                  print(_value);
                 });
               },
               regEx: r".{6,}",
               hintText: "Password",
-              obscureText: false,
-              icon: Icons.lock,
+              obscureText: true,
             ),
           ],
         ),

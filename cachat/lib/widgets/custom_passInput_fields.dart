@@ -1,18 +1,29 @@
 import 'package:flutter/material.dart';
 
-class CustomTextFormField extends StatelessWidget {
+class CustomPassFormField extends StatefulWidget {
   final Function(String) onSaved;
   final String regEx;
   final String hintText;
   final bool obscureText;
-  final IconData icon;
-  CustomTextFormField({
+
+  CustomPassFormField({
     required this.onSaved,
     required this.regEx,
     required this.hintText,
     required this.obscureText,
-    required this.icon,
   });
+
+  @override
+  State<CustomPassFormField> createState() => _CustomPassFormFieldState();
+}
+
+class _CustomPassFormFieldState extends State<CustomPassFormField> {
+  late bool _passwordVisible;
+
+  @override
+  void initState() {
+    _passwordVisible = false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,23 +40,36 @@ class CustomTextFormField extends StatelessWidget {
           ),
           height: 65.0,
           child: TextFormField(
-            keyboardType: TextInputType.name,
-            onSaved: (_value) => onSaved(_value!),
+            keyboardType: TextInputType.visiblePassword,
+            obscureText: !_passwordVisible,
+            onSaved: (_value) => widget.onSaved(_value!),
             cursorColor: Colors.white,
             style: const TextStyle(color: Colors.white),
-            obscureText: obscureText,
             validator: (_value) {
-              return RegExp(regEx).hasMatch(_value!)
+              return RegExp(widget.regEx).hasMatch(_value!)
                   ? null
-                  : 'Enter a valid Username.';
+                  : 'Enter a valid value.';
             },
             decoration: InputDecoration(
-              prefixIcon: Icon(
-                icon,
+              contentPadding: const EdgeInsets.only(top: 15.0),
+              prefixIcon: const Icon(
+                Icons.lock,
                 color: Colors.white,
               ),
+              suffixIcon: IconButton(
+                splashRadius: 1,
+                icon: Icon(
+                  _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                  color: Colors.indigo,
+                ),
+                onPressed: () {
+                  setState(() {
+                    _passwordVisible = !_passwordVisible;
+                  });
+                },
+              ),
               border: InputBorder.none,
-              hintText: hintText,
+              hintText: widget.hintText,
               hintStyle: const TextStyle(
                 color: Colors.white54,
                 fontFamily: 'OpenSans',
