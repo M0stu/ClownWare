@@ -121,43 +121,40 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _loginForm() {
-    return SizedBox(
-      height: _deviceHeight * 0.2765,
-      child: Form(
-        key: _loginFormKey,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CustomEmailFormField(
-              onSaved: (_value) {
-                setState(() {
-                  print(_value);
-                  _email = _value;
-                });
-              },
-              regEx:
-                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
-              hintText: "Email",
-              obscureText: false,
-            ),
-            SizedBox(
-              height: _deviceHeight * 0.020,
-            ),
-            CustomPassFormField(
-              onSaved: (_value) {
-                setState(() {
-                  _password = _value;
-                  print(_value);
-                });
-              },
-              regEx: r".{6,}",
-              hintText: "Password",
-              obscureText: true,
-            ),
-          ],
-        ),
+    return Form(
+      key: _loginFormKey,
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          CustomEmailFormField(
+            onSaved: (_value) {
+              setState(() {
+                print(_value);
+                _email = _value;
+              });
+            },
+            regEx:
+                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+            hintText: "Email",
+            obscureText: false,
+          ),
+          SizedBox(
+            height: _deviceHeight * 0.020,
+          ),
+          CustomPassFormField(
+            onSaved: (_value) {
+              setState(() {
+                _password = _value;
+                print(_value);
+              });
+            },
+            regEx: r".{6,}",
+            hintText: "Password",
+            obscureText: true,
+          ),
+        ],
       ),
     );
   }

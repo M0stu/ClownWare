@@ -62,7 +62,7 @@ class _RegisterPageState extends State<RegisterPage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios),
           color: Colors.white,
-          onPressed: () => _navigation.navigateToRoute('/login'),
+          onPressed: () => _navigation.goBack(),
         ),
         backgroundColor:
             Colors.blue.withOpacity(0), //You can make this transparent
@@ -140,65 +140,65 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   Widget _registerForm() {
-    return SizedBox(
-      height: _deviceHeight * 0.2765,
-      child: Form(
-        key: _registerFormKey,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CustomTextFormField(
-              onSaved: (_value) {
-                setState(() {
-                  _name = _value;
-                });
-              },
-              regEx: r'.{8,}',
-              hintText: "Username",
-              obscureText: false,
-              icon: Icons.supervised_user_circle,
-            ),
-            SizedBox(
-              height: _deviceHeight * 0.020,
-            ),
-            CustomEmailFormField(
-              onSaved: (_value) {
-                setState(() {
-                  _email = _value;
-                });
-              },
-              regEx:
-                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
-              hintText: "Email",
-              obscureText: false,
-            ),
-            SizedBox(
-              height: _deviceHeight * 0.020,
-            ),
-            CustomPassFormField(
-              onSaved: (_value) {
-                setState(() {
-                  _password = _value;
-                });
-              },
-              regEx: r".{8,}",
-              hintText: "Password",
-              obscureText: true,
-            ),
-            // CustomTextFormField(
-            //   onSaved: (_value) {
-            //     setState(() {
-            //       //_password = _value;
-            //     });
-            //   },
-            //   regEx: r".{8,}",
-            //   hintText: "Confirm Password",
-            //   obscureText: true,
-            // ),
-          ],
-        ),
+    return Form(
+      key: _registerFormKey,
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          CustomTextFormField(
+            onSaved: (_value) {
+              setState(() {
+                _name = _value;
+              });
+            },
+            regEx: r'.{8,}',
+            hintText: "Username",
+            obscureText: false,
+            icon: Icons.supervised_user_circle,
+          ),
+          SizedBox(
+            height: _deviceHeight * 0.020,
+          ),
+          CustomEmailFormField(
+            onSaved: (_value) {
+              setState(() {
+                _email = _value;
+              });
+            },
+            regEx:
+                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+            hintText: "Email",
+            obscureText: false,
+          ),
+          SizedBox(
+            height: _deviceHeight * 0.025,
+          ),
+          CustomPassFormField(
+            onSaved: (_value) {
+              setState(() {
+                _password = _value;
+              });
+            },
+            regEx: r".{8,}",
+            hintText: "Password",
+            obscureText: true,
+          ),
+          SizedBox(
+            height: _deviceHeight * 0.020,
+          ),
+          CustomPassFormField(
+            onSaved: (_value) {
+              setState(() {
+                //_password = _value;
+              });
+            },
+            regEx: r".{8,}",
+            hintText: "Confirm Password",
+            obscureText: true,
+          ),
+        ],
       ),
     );
   }
