@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:get_it/get_it.dart';
 
 //Widgets
+import '../services/database_service.dart';
 import '../widgets/custom_Einput_fields.dart';
 import '../widgets/custom_passInput_fields.dart';
 import '../widgets/or_divider.dart';
@@ -33,17 +34,18 @@ class _LoginPageState extends State<LoginPage> {
 
   late AuthenticationProvider _auth;
   late NavigationService _navigation;
-
+  late DatabaseService _db;
   final _loginFormKey = GlobalKey<FormState>();
   late GoogleSignInAccount userObj;
   String? _email;
   String? _password;
-
+  String? _name;
   @override
   Widget build(BuildContext context) {
     _deviceHeight = MediaQuery.of(context).size.height;
     _deviceWidth = MediaQuery.of(context).size.width;
     _auth = Provider.of<AuthenticationProvider>(context);
+    _db = GetIt.instance.get<DatabaseService>();
     _navigation = GetIt.instance.get<NavigationService>();
     return _buildUI();
   }
@@ -64,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
             width: _deviceWidth * 0.97,
             child: Column(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 _pageTitle(),
@@ -76,10 +78,11 @@ class _LoginPageState extends State<LoginPage> {
                   height: _deviceHeight * 0.022,
                 ),
                 _loginButton(),
-                // const OrDivider(),
-                // _loginWithGoogleOrFacebook(),
-
-                //_loginWithGoogleOrFacebook(),
+                SizedBox(
+                  height: _deviceHeight * 0.011,
+                ),
+                const OrDivider(),
+                _loginWithGoogleOrFacebook(),
                 SizedBox(
                   height: _deviceHeight * 0.03,
                 ),
@@ -204,10 +207,13 @@ class _LoginPageState extends State<LoginPage> {
                 userObj = value!;
               });
             });
-            _navigation.navigateToRoute('/home');
-            if (kDebugMode) {
-              print("Shi Hong wo de Peng You <3");
-            }
+            // String? _uid = await _auth.registerUserUsingEmailAndPassword(
+            //     userObj.email, userObj.id);
+            // await _db.createUser(_uid!, userObj.email, userObj.displayName!,
+            //     userObj.photoUrl!);
+            // await _auth.logout();
+            await _auth.loginUsingEmailAndPassword(userObj.email, userObj.id);
+            // _navigation.navigateToRoute('/home');
           },
         ),
       ],

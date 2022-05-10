@@ -82,7 +82,7 @@ class _RegisterPageState extends State<RegisterPage> {
             width: _deviceWidth * 0.97,
             child: Column(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 //  _profileImageField(),
@@ -95,11 +95,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   height: _deviceHeight * 0.04,
                 ),
                 _registerButton(),
-                // SizedBox(
-                //   height: _deviceHeight * 0.015,
-                // ),
-
-                //_loginLink(),
+                SizedBox(
+                  height: _deviceHeight * 0.030,
+                ),
+                _loginLink(),
               ],
             ),
           ),
@@ -223,7 +222,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
           await _db.createUser(_uid, _email!, _name!, "_imageURL!");
 
-          _navigation.goBack();
+          //_navigation.goBack();
           await _auth.logout();
           await _auth.loginUsingEmailAndPassword(_email!, _password!);
         }
