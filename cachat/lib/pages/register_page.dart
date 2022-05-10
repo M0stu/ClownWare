@@ -207,15 +207,18 @@ class _RegisterPageState extends State<RegisterPage> {
       height: _deviceHeight * 0.065,
       width: _deviceWidth * 0.65,
       onPressed: () async {
-        if (_registerFormKey.currentState!.validate() &&
-            _profileImage != null) {
+        if (_registerFormKey.currentState!
+                .validate() /*&&
+            _profileImage != null*/
+            ) {
           _registerFormKey.currentState!.save();
           String? _uid = await _auth.registerUserUsingEmailAndPassword(
               _email!, _password!);
 
-          await _db.createUser(_uid!, _email!, _name!, "Null");
-          // String? _imageURL =
-          //     await _cloudStorage.saveUserImageToStorage(_uid!, _profileImage!);
+          //String? _imageURL =
+          //    await _cloudStorage.saveUserImageToStorage(_uid!, _profileImage!);
+
+          await _db.createUser(_uid!, _email!, _name!, "_imageURL!");
 
           _navigation.goBack();
           await _auth.logout();
