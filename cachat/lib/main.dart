@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 //Packages
 import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
@@ -16,6 +17,9 @@ import './pages/home_page.dart';
 import './pages/register_page.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(
     SplashPage(
       key: UniqueKey(),
