@@ -84,8 +84,8 @@ class _RegisterPageState extends State<RegisterPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                _profileImageField(),
-                //_pageTitle(),
+                //  _profileImageField(),
+                _pageTitle(),
                 SizedBox(
                   height: _deviceHeight * 0.03,
                 ),
@@ -98,9 +98,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   height: _deviceHeight * 0.015,
                 ),
 
-                SizedBox(
-                  height: _deviceHeight * 0.02,
-                ),
                 //_loginLink(),
               ],
             ),
@@ -143,7 +140,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   Widget _registerForm() {
     return Container(
-      height: _deviceHeight * 0.35,
+      height: _deviceHeight * 0.4,
       child: Form(
         key: _registerFormKey,
         child: Column(
@@ -204,7 +201,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget _registerButton() {
     return RoundedButton(
       name: "Register",
-      height: _deviceHeight * 0.065,
+      height: _deviceHeight * 0.062,
       width: _deviceWidth * 0.65,
       onPressed: () async {
         if (_registerFormKey.currentState!
@@ -217,8 +214,9 @@ class _RegisterPageState extends State<RegisterPage> {
 
           //String? _imageURL =
           //    await _cloudStorage.saveUserImageToStorage(_uid!, _profileImage!);
+          var imgupload = await _cloudStorage.saveUserImageToStorage(_uid!);
 
-          await _db.createUser(_uid!, _email!, _name!, "_imageURL!");
+          await _db.createUser(_uid, _email!, _name!, "_imageURL!");
 
           _navigation.goBack();
           await _auth.logout();

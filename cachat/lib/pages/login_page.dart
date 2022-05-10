@@ -72,16 +72,16 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 _loginForm(),
                 SizedBox(
-                  height: _deviceHeight * 0.05,
+                  height: _deviceHeight * 0.07,
                 ),
                 _loginButton(),
                 SizedBox(
-                  height: _deviceHeight * 0.02,
+                  height: _deviceHeight * 0.03,
                 ),
-                const OrDivider(),
-                _loginWithGoogleOrFacebook(),
+                // const OrDivider(),
+                // _loginWithGoogleOrFacebook(),
                 SizedBox(
-                  height: _deviceHeight * 0.02,
+                  height: _deviceHeight * 0.03,
                 ),
                 _registerLink(),
               ],
@@ -122,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _loginForm() {
     return SizedBox(
-      height: _deviceHeight * 0.275,
+      height: _deviceHeight * 0.2765,
       child: Form(
         key: _loginFormKey,
         child: Column(
@@ -143,7 +143,7 @@ class _LoginPageState extends State<LoginPage> {
               icon: Icons.email,
             ),
             SizedBox(
-              height: _deviceHeight * 0.035,
+              height: _deviceHeight * 0.03,
             ),
             CustomTextFormField(
               onSaved: (_value) {
