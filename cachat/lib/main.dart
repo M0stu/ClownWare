@@ -1,6 +1,3 @@
-import 'package:cachat/pages/chat_page.dart';
-import 'package:cachat/pages/chats_page.dart';
-import 'package:cachat/providers/authentication_provider.dart';
 import 'package:flutter/material.dart';
 
 //Packages
@@ -17,6 +14,8 @@ import './pages/splash_page.dart';
 import './pages/login_page.dart';
 import './pages/home_page.dart';
 import './pages/register_page.dart';
+//Providers
+import './providers/authentication_provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -56,12 +55,11 @@ class MainApp extends StatelessWidget {
           ),
         ),
         navigatorKey: NavigationService.navigatorKey,
-        initialRoute: '/chats',
+        initialRoute: '/login',
         routes: {
           '/login': (BuildContext _context) => LoginPage(),
           '/register': (BuildContext _context) => RegisterPage(),
-          '/home': (BuildContext _context) => HomePage(),
-          '/chats': (BuildContext _context) => ChatsPage(),
+          '/home': (BuildContext _context) => const HomePage(),
         },
       ),
     );

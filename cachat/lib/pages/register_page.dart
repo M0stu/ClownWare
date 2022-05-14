@@ -16,8 +16,6 @@ import '../widgets/custom_input_fields.dart';
 import '../widgets/custom_passInput_fields.dart';
 import '../widgets/rounded_button.dart';
 import '../widgets/rounded_image.dart';
-import 'package:cachat/widgets/or_divider.dart';
-import 'package:cachat/widgets/social_icon.dart';
 
 //providers
 import '../providers/authentication_provider.dart';
@@ -58,6 +56,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   Widget _buildUI() {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios),
@@ -68,7 +67,6 @@ class _RegisterPageState extends State<RegisterPage> {
             Colors.blue.withOpacity(0), //You can make this transparent
         elevation: 0.0, //No shadow
       ),
-      resizeToAvoidBottomInset: false,
       body: Center(
         child: SingleChildScrollView(
           reverse: true,

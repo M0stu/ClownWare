@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 //Pages
 import '../pages/chats_page.dart';
 import '../pages/users_page.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _HomePageState();
   }
 }

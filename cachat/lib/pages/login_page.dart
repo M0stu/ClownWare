@@ -52,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _buildUI() {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: Center(
         child: SingleChildScrollView(
           reverse: true,

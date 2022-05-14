@@ -1,9 +1,13 @@
 //Packages
+import 'package:cachat/pages/chat_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
 //Providers
+import '../model/chat.dart';
 import '../providers/authentication_provider.dart';
+import '../providers/chats_page_provider.dart';
 import '../providers/users_page_provider.dart';
 
 //Widgets
@@ -15,6 +19,9 @@ import '../widgets/rounded_button.dart';
 //Models
 import '../model/chat_user.dart';
 
+//Services
+import '../services/navigation_service.dart';
+
 class UsersPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -25,10 +32,10 @@ class UsersPage extends StatefulWidget {
 class _UsersPageState extends State<UsersPage> {
   late double _deviceHeight;
   late double _deviceWidth;
-
   late AuthenticationProvider _auth;
   late UsersPageProvider _pageProvider;
-
+  //late ChatsPageProvider _chatsPageProvider;
+  late NavigationService _navigation;
   final TextEditingController _searchFieldTextEditingController =
       TextEditingController();
 
@@ -37,6 +44,7 @@ class _UsersPageState extends State<UsersPage> {
     _deviceHeight = MediaQuery.of(context).size.height;
     _deviceWidth = MediaQuery.of(context).size.width;
     _auth = Provider.of<AuthenticationProvider>(context);
+    _navigation = GetIt.instance.get<NavigationService>();
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<UsersPageProvider>(
@@ -96,25 +104,31 @@ class _UsersPageState extends State<UsersPage> {
     List<ChatUser>? _users = _pageProvider.users;
     return Expanded(child: () {
       if (_users != null) {
-        if (_users.length != 0) {
+        if (_users.isNotEmpty) {
           return ListView.builder(
             itemCount: _users.length,
             itemBuilder: (BuildContext _context, int _index) {
-              return CustomListViewTile(
-                height: _deviceHeight * 0.10,
-                title: _users[_index].name,
-                subtitle: "Last Active: ${_users[_index].lastTimeActive()}",
-                imagePath: _users[_index].imageURL,
-                isActive: _users[_index].wasRecentlyActive(),
-                isSelected: _pageProvider.selectedUsers.contains(
-                  _users[_index],
-                ),
-                onTap: () {
-                  _pageProvider.updateSelectedUsers(
+              if (_users[_index].name != _auth.user.name) {
+                return CustomListViewTile(
+                  height: _deviceHeight * 0.10,
+                  title: _users[_index].name,
+                  subtitle: "Last Active: ${_users[_index].lastTimeActive()}",
+                  imagePath: _users[_index].imageURL,
+                  isActive: _users[_index].wasRecentlyActive(),
+                  isSelected: _pageProvider.selectedUsers.contains(
                     _users[_index],
-                  );
-                },
-              );
+                  ), //Showing the users in Users Page
+                  onTap: () {
+                    _pageProvider.updateSelectedUsers(
+                      _users[_index],
+                    );
+                  },
+                );
+              } else {
+                return const Text(
+                  "",
+                );
+              }
             },
           );
         } else {
@@ -138,6 +152,7 @@ class _UsersPageState extends State<UsersPage> {
   }
 
   Widget _createChatButton() {
+    //List<Chat>? _chats = _chatsPageProvider.chats;
     return Visibility(
       visible: _pageProvider.selectedUsers.isNotEmpty,
       child: RoundedButton(
@@ -147,7 +162,12 @@ class _UsersPageState extends State<UsersPage> {
         height: _deviceHeight * 0.08,
         width: _deviceWidth * 0.80,
         onPressed: () {
+          // if(_chats != null)
+          // _pageProvider.selectedUsers.first.uid==_chatsPageProvider.chats!.first.uid?
           _pageProvider.createChat();
+          //print(_chats);
+          // _navigation
+          //     .navigateToPage(ChatPage(chat: _chatsPageProvider.chats!.first));
         },
       ),
     );
