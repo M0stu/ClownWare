@@ -82,7 +82,7 @@ class AuthenticationProvider extends ChangeNotifier {
     } on FirebaseAuthException {
       if (kDebugMode) {
         print(
-            "Error registering user. FireeeeeeeBAAAAAAAAAAAAAAAAAAAAAAAAAAAASEEE hereeeeee");
+            "Error registering user. FireeeeeeeBAAAAAAAAAAAAAAAAAAAAAAAAAAAASEEE hereeeeee  >>Authentication Provider");
       }
     } catch (e) {
       if (kDebugMode) {

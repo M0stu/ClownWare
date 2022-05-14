@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:get_it/get_it.dart';
 
 //Provider
+import '../model/chat_message.dart';
 import '../model/chat_user.dart';
 import '../providers/authentication_provider.dart';
 import '../providers/chats_page_provider.dart';
@@ -124,18 +125,24 @@ class _ChatsPageState extends State<ChatsPage> {
   Widget _chatTile(Chat _chat) {
     List<ChatUser> _recepients = _chat.recepients();
     bool _isActive = _recepients.any((_d) => _d.wasRecentlyActive());
+    String _subtitleText = "";
+    if (_chat.messages.isNotEmpty) {
+      _subtitleText = _chat.messages.first.type != MessageType.TEXT
+          ? "Media Attachment"
+          : _chat.messages.first.content;
+    }
     return CustomListViewTileWithActivity(
-        height: _deviceHeight * 0.10,
-        title: "Hextech",
-        subtitle: "Hello",
-        imagePath:
-            "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.dreamstime.com%2Fhappy-smiling-geek-hipster-beard-man-cool-avatar-geek-man-avatar-image104871313&psig=AOvVaw0cyyyEDYDOLipEdmKIGB29&ust=1651758688062000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCPixtMf-xfcCFQAAAAAdAAAAABAJ",
-        isActive: false,
-        isActivity: false,
-        onTap: () {
-          _navigation.navigateToPage(
-            ChatPage(chat: _chat),
-          );
-        });
+      height: _deviceHeight * 0.12,
+      title: _chat.title(),
+      subtitle: _subtitleText,
+      imagePath: _chat.imageURL(),
+      isActive: _isActive,
+      isActivity: _chat.activity,
+      onTap: () {
+        _navigation.navigateToPage(
+          ChatPage(chat: _chat),
+        );
+      },
+    );
   }
 }

@@ -1,3 +1,5 @@
+import 'package:cachat/pages/chat_page.dart';
+import 'package:cachat/pages/chats_page.dart';
 import 'package:cachat/providers/authentication_provider.dart';
 import 'package:flutter/material.dart';
 
@@ -54,11 +56,12 @@ class MainApp extends StatelessWidget {
           ),
         ),
         navigatorKey: NavigationService.navigatorKey,
-        initialRoute: '/register',
+        initialRoute: '/chats',
         routes: {
           '/login': (BuildContext _context) => LoginPage(),
           '/register': (BuildContext _context) => RegisterPage(),
           '/home': (BuildContext _context) => HomePage(),
+          '/chats': (BuildContext _context) => ChatsPage(),
         },
       ),
     );

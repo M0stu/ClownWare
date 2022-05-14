@@ -209,8 +209,8 @@ class _LoginPageState extends State<LoginPage> {
             });
             // String? _uid = await _auth.registerUserUsingEmailAndPassword(
             //     userObj.email, userObj.id);
-            // await _db.createUser(_uid!, userObj.email, userObj.displayName!,
-            //     userObj.photoUrl!);
+            // await _db.createUser(
+            //     _uid!, userObj.email, userObj.displayName!, userObj.photoUrl!);
             // await _auth.logout();
             await _auth.loginUsingEmailAndPassword(userObj.email, userObj.id);
             // _navigation.navigateToRoute('/home');
