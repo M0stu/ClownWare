@@ -16,8 +16,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _currentPage = 0;
   final List<Widget> _pages = [
-    ChatsPage(),
     UsersPage(),
+    ChatsPage(),
   ];
 
   @override
@@ -38,12 +38,12 @@ class _HomePageState extends State<HomePage> {
         },
         items: const [
           BottomNavigationBarItem(
-            label: "Chats",
-            icon: Icon(Icons.chat_bubble_sharp),
-          ),
-          BottomNavigationBarItem(
             label: "Users",
             icon: Icon(Icons.supervised_user_circle_sharp),
+          ),
+          BottomNavigationBarItem(
+            label: "Chats",
+            icon: Icon(Icons.chat_bubble_sharp),
           ),
         ],
       ),
