@@ -7,7 +7,6 @@ class TopBar extends StatelessWidget {
   Widget? primaryAction;
   Widget? secondaryAction;
   double? fontSize;
-  PlatformFile? _profileImage;
   late double _deviceHeight;
   late double _deviceWidth;
 
