@@ -1,11 +1,14 @@
 //Packages
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 //Widgets
-import '../widgets/top_bar.dart';
+import '../widgets/top_bar_chat.dart';
 import '../widgets/custom_list_view_tiles.dart';
 import '../widgets/custom_MessInput_fields.dart';
+import 'package:cachat/widgets/rounded_image.dart';
+
 //Models
 import '../model/chat.dart';
 import '../model/chat_message.dart';
@@ -26,7 +29,7 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   late double _deviceHeight;
   late double _deviceWidth;
-
+  PlatformFile? _profileImage;
   late AuthenticationProvider _auth;
   late ChatPageProvider _pageProvider;
 
@@ -97,6 +100,7 @@ class _ChatPageState extends State<ChatPage> {
                       },
                     ),
                   ),
+                  // RoundedImage(),
                   _messagesListView(),
                   _sendMessageForm(),
                 ],

@@ -22,7 +22,7 @@ class ProfileMenu extends StatelessWidget {
           padding: EdgeInsets.all(20),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          backgroundColor: Color.fromRGBO(30, 36, 49, 1.0),
+          backgroundColor: Color.fromRGBO(30, 30, 49, 1.0),
         ),
         onPressed: press,
         child: Row(

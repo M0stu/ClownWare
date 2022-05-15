@@ -34,7 +34,18 @@ class TopBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          if (secondaryAction != null) secondaryAction!,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              if (secondaryAction != null) secondaryAction!,
+              RoundedImageNetworkWithStatusIndicator(
+                key: UniqueKey(),
+                size: 40,
+                imagePath: "imagePath",
+                isActive: false,
+              ),
+            ],
+          ),
           _titleBar(),
           if (primaryAction != null) primaryAction!,
         ],
@@ -46,10 +57,10 @@ class TopBar extends StatelessWidget {
     return Text(
       _barTitle,
       overflow: TextOverflow.ellipsis,
-      style: TextStyle(
+      style: const TextStyle(
         color: Colors.white70,
-        fontSize: fontSize,
-        fontWeight: FontWeight.w600,
+        fontSize: 20,
+        fontWeight: FontWeight.w400,
       ),
     );
   }

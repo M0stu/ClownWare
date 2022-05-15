@@ -44,6 +44,7 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(
               Icons.supervised_user_circle_sharp,
               size: 25,
+              // color: Colors.white54,
             ),
           ),
           BottomNavigationBarItem(
@@ -51,6 +52,7 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(
               Icons.chat_bubble_sharp,
               size: 25,
+              //  color: Colors.white54,
             ),
           ),
           BottomNavigationBarItem(
@@ -58,6 +60,7 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(
               Icons.account_circle,
               size: 25,
+              // color: Colors.white54,
             ),
           ),
         ],
