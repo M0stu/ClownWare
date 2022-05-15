@@ -40,6 +40,7 @@ class _LoginPageState extends State<LoginPage> {
   String? _email;
   String? _password;
   String? _name;
+
   @override
   Widget build(BuildContext context) {
     _deviceHeight = MediaQuery.of(context).size.height;
@@ -207,14 +208,17 @@ class _LoginPageState extends State<LoginPage> {
                 userObj = value!;
               });
             });
-            // String? _uid = await _auth.registerUserUsingEmailAndPassword(
-            //     userObj.email, userObj.id);
-            //
-            // await _db.createUser(
-            //     _uid!, userObj.email, userObj.displayName!, userObj.photoUrl!);
-            // await _auth.logout();
-            await _auth.loginUsingEmailAndPassword(userObj.email, userObj.id);
-            // _navigation.navigateToRoute('/home');
+
+            String? _uid = await _auth.registerUserUsingEmailAndPassword(
+                userObj.email, userObj.id);
+            if (_db.getUser(userObj.id) != null) {
+              await _auth.loginUsingEmailAndPassword(userObj.email, userObj.id);
+            } else {
+              await _db.createUser(_uid!, userObj.email, userObj.displayName!,
+                  userObj.photoUrl!);
+              await _auth.logout();
+              await _auth.loginUsingEmailAndPassword(userObj.email, userObj.id);
+            }
           },
         ),
       ],
