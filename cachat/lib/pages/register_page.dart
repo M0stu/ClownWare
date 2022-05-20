@@ -38,7 +38,9 @@ class _RegisterPageState extends State<RegisterPage> {
   late NavigationService _navigation;
   String? _email;
   String? _password;
-  String? _name;
+  String? _cPassword;
+  String? _firstName;
+  String? _lastName;
   PlatformFile? _profileImage;
   final _registerFormKey = GlobalKey<FormState>();
 
@@ -76,8 +78,8 @@ class _RegisterPageState extends State<RegisterPage> {
               horizontal: _deviceWidth * 0.03,
               vertical: _deviceHeight * 0.02,
             ),
-            height: _deviceHeight * 0.98,
-            width: _deviceWidth * 0.97,
+            height: _deviceHeight,
+            width: _deviceWidth,
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.end,
@@ -147,11 +149,25 @@ class _RegisterPageState extends State<RegisterPage> {
           CustomTextFormField(
             onSaved: (_value) {
               setState(() {
-                _name = _value;
+                _firstName = _value;
               });
             },
-            regEx: r'.{8,}',
-            hintText: "Username",
+            regEx: r'.{4,}',
+            hintText: "First Name",
+            obscureText: false,
+            icon: Icons.supervised_user_circle,
+          ),
+          SizedBox(
+            height: _deviceHeight * 0.020,
+          ),
+          CustomTextFormField(
+            onSaved: (_value) {
+              setState(() {
+                _lastName = _value;
+              });
+            },
+            regEx: r'.{4,}',
+            hintText: "Last Name",
             obscureText: false,
             icon: Icons.supervised_user_circle,
           ),
@@ -188,7 +204,9 @@ class _RegisterPageState extends State<RegisterPage> {
           CustomPassFormField(
             onSaved: (_value) {
               setState(() {
-                //_password = _value;
+                _password == _cPassword
+                    ? _value
+                    : print("Password does not match");
               });
             },
             regEx: r".{8,}",
@@ -218,7 +236,8 @@ class _RegisterPageState extends State<RegisterPage> {
           //    await _cloudStorage.saveUserImageToStorage(_uid!, _profileImage!);
           var imgupload = await _cloudStorage.saveUserImageToStorage(_uid!);
 
-          await _db.createUser(_uid, _email!, _name!, "_imageURL!");
+          await _db.createUser(
+              _uid, _email!, _firstName!, _lastName!, "_imageURL!");
 
           //_navigation.goBack();
           await _auth.logout();

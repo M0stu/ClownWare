@@ -209,16 +209,23 @@ class _LoginPageState extends State<LoginPage> {
               });
             });
 
-            String? _uid = await _auth.registerUserUsingEmailAndPassword(
-                userObj.email, userObj.id);
-            if (_db.getUser(userObj.id) != null) {
-              await _auth.loginUsingEmailAndPassword(userObj.email, userObj.id);
-            } else {
-              await _db.createUser(_uid!, userObj.email, userObj.displayName!,
-                  userObj.photoUrl!);
-              await _auth.logout();
-              await _auth.loginUsingEmailAndPassword(userObj.email, userObj.id);
-            }
+            // if (_db.getUserUsingEmail(userObj.email) != userObj.) {
+            //   print("hereeeeeeeeeeeeeeeee   true   " +
+            //       userObj.id +
+            //       "  " +
+            //       _db.getUserUsingEmail(userObj.email).toString());
+            //   String? _uid = await _auth.registerUserUsingEmailAndPassword(
+            //       userObj.email, userObj.id);
+            //   await _db.createUser(_uid!, userObj.email, userObj.displayName!,
+            //       userObj.photoUrl!);
+            //   await _auth.logout();
+            //   await _auth.loginUsingEmailAndPassword(userObj.email, userObj.id);
+            // } else {
+            //   print("hereeeeeeeeeeeeeeeee" + userObj.id);
+            //   await _auth.loginUsingEmailAndPassword(userObj.email, userObj.id);
+            // }
+            print("hereeeeeeeeeeeeeeeee   " + userObj.email);
+            await _auth.loginUsingEmailAndPassword(userObj.email, userObj.id);
           },
         ),
       ],

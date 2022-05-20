@@ -48,7 +48,7 @@ class _CustomPassFormFieldState extends State<CustomPassFormField> {
             validator: (_value) {
               return RegExp(widget.regEx).hasMatch(_value!)
                   ? null
-                  : 'Enter a valid value.';
+                  : 'Enter a valid Password.';
             },
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.only(top: 15.0),
