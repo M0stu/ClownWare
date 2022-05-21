@@ -74,7 +74,7 @@ class ChatPageProvider extends ChangeNotifier {
           ).toList();
           messages = _messages;
           notifyListeners();
-          WidgetsBinding.instance?.addPostFrameCallback(
+          WidgetsBinding.instance.addPostFrameCallback(
             (_) {
               if (_messagesListViewController.hasClients) {
                 _messagesListViewController.jumpTo(

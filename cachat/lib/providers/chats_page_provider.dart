@@ -18,7 +18,6 @@ import '../model/chat_user.dart';
 
 class ChatsPageProvider extends ChangeNotifier {
   final AuthenticationProvider _auth;
-
   late DatabaseService _db;
 
   List<Chat>? chats;

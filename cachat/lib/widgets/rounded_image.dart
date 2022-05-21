@@ -2,12 +2,15 @@ import 'package:file_picker/file_picker.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_profile_picture/flutter_profile_picture.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/chats_page_provider.dart';
+import '../pages/chats_page.dart';
 
 class RoundedImageNetwork extends StatelessWidget {
   final String imagePath;
   final double size;
-
-  const RoundedImageNetwork({
+  RoundedImageNetwork({
     required Key key,
     required this.imagePath,
     required this.size,
@@ -33,7 +36,8 @@ class RoundedImageNetwork extends StatelessWidget {
         : Container(
             height: size,
             width: size,
-            child: ProfilePicture(name: "Hex", radius: size, fontsize: 20),
+            child:
+                ProfilePicture(name: "_chatsPage.", radius: size, fontsize: 20),
           );
   }
 }
@@ -68,7 +72,7 @@ class RoundedImageFile extends StatelessWidget {
 class RoundedImageNetworkWithStatusIndicator extends RoundedImageNetwork {
   final bool isActive;
 
-  const RoundedImageNetworkWithStatusIndicator({
+  RoundedImageNetworkWithStatusIndicator({
     required Key key,
     required String imagePath,
     required double size,

@@ -54,6 +54,12 @@
 @import flutter_keyboard_visibility;
 #endif
 
+#if __has_include(<flutter_sound_lite/FlutterSound.h>)
+#import <flutter_sound_lite/FlutterSound.h>
+#else
+@import flutter_sound_lite;
+#endif
+
 #if __has_include(<google_sign_in_ios/FLTGoogleSignInPlugin.h>)
 #import <google_sign_in_ios/FLTGoogleSignInPlugin.h>
 #else
@@ -83,6 +89,7 @@
   [FLTFirebaseStoragePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseStoragePlugin"]];
   [FlutterFacebookAuthPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterFacebookAuthPlugin"]];
   [FlutterKeyboardVisibilityPlugin registerWithRegistrar:[registry registrarForPlugin:@"FlutterKeyboardVisibilityPlugin"]];
+  [FlutterSound registerWithRegistrar:[registry registrarForPlugin:@"FlutterSound"]];
   [FLTGoogleSignInPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTGoogleSignInPlugin"]];
   [FLTImagePickerPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTImagePickerPlugin"]];
   [FLTPathProviderPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTPathProviderPlugin"]];

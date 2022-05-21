@@ -36,7 +36,7 @@ class _ChatsPageState extends State<ChatsPage> {
   late NavigationService _navigation;
   late AuthenticationProvider _auth;
   late ChatsPageProvider _pageProvider;
-
+  String _senderName = "_";
   @override
   Widget build(BuildContext context) {
     _deviceHeight = MediaQuery.of(context).size.height;
@@ -122,6 +122,7 @@ class _ChatsPageState extends State<ChatsPage> {
           ? "Media Attachment"
           : _chat.messages.first.content;
     }
+    print("Chat Title hereeeeeeeeeeeee      " + _chat.title());
     return CustomListViewTileWithActivity(
       height: _deviceHeight * 0.12,
       title: _chat.title(),
@@ -130,10 +131,20 @@ class _ChatsPageState extends State<ChatsPage> {
       isActive: _isActive,
       isActivity: _chat.activity,
       onTap: () {
+        setSenderName(_chat.title());
+        print("senderName     >>     " + getSenderName());
         _navigation.navigateToPage(
           ChatPage(chat: _chat),
         );
       },
     );
+  }
+
+  void setSenderName(String newName) {
+    _senderName = newName;
+  }
+
+  String getSenderName() {
+    return _senderName;
   }
 }

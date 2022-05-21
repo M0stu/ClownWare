@@ -37,6 +37,7 @@ class _UsersPageState extends State<UsersPage> {
   late NavigationService _navigation;
   final TextEditingController _searchFieldTextEditingController =
       TextEditingController();
+  late ChatsPageProvider _chatsPageProvider;
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +50,9 @@ class _UsersPageState extends State<UsersPage> {
         ChangeNotifierProvider<UsersPageProvider>(
           create: (_) => UsersPageProvider(_auth),
         ),
+        ChangeNotifierProvider<ChatsPageProvider>(
+          create: (_) => ChatsPageProvider(_auth),
+        ),
       ],
       child: _buildUI(),
     );
@@ -58,6 +62,7 @@ class _UsersPageState extends State<UsersPage> {
     return Builder(
       builder: (BuildContext _context) {
         _pageProvider = _context.watch<UsersPageProvider>();
+        _chatsPageProvider = _context.watch<ChatsPageProvider>();
         return Container(
           padding: EdgeInsets.symmetric(
               horizontal: _deviceWidth * 0.03, vertical: _deviceHeight * 0.02),
@@ -107,7 +112,8 @@ class _UsersPageState extends State<UsersPage> {
                   isActive: _users[_index].wasRecentlyActive(),
                   isSelected: _pageProvider.selectedUsers.contains(
                     _users[_index],
-                  ), //Showing the users in Users Page
+                  ),
+                  //Showing the users in Users Page
                   onTap: () {
                     _pageProvider.updateSelectedUsers(
                       _users[_index],
@@ -142,7 +148,7 @@ class _UsersPageState extends State<UsersPage> {
   }
 
   Widget _createChatButton() {
-    //List<Chat>? _chats = _chatsPageProvider.chats;
+    List<Chat>? _chats = _chatsPageProvider.chats;
     return Visibility(
       visible: _pageProvider.selectedUsers.isNotEmpty,
       child: RoundedButton(
@@ -152,12 +158,34 @@ class _UsersPageState extends State<UsersPage> {
         height: _deviceHeight * 0.08,
         width: _deviceWidth * 0.80,
         onPressed: () {
-          // if(_chats != null)
-          // _pageProvider.selectedUsers.first.uid==_chatsPageProvider.chats!.first.uid?
-          _pageProvider.createChat();
-          //print(_chats);
-          // _navigation
-          //     .navigateToPage(ChatPage(chat: _chatsPageProvider.chats!.first));
+          print("Hereeeeeeee     user page >> " +
+              _chats![0].members.first.uid +
+              "  " +
+              _pageProvider.selectedUsers.first.uid);
+          if (_chats.isNotEmpty) {
+            for (int i = 0; i < _chats.length; i++) {
+              if (!_chats[i].group) {
+                if (_chats[i].members.last.uid ==
+                        _pageProvider.selectedUsers.first.uid ||
+                    _chats[i].members.first.uid ==
+                        _pageProvider.selectedUsers.first.uid) {
+                  _navigation.navigateToPage(ChatPage(chat: _chats[i]));
+                  break;
+                }
+              } else if (_chats[i].group) {
+                print("group  >>>" + _chats[i].uid);
+                if (_chats[i].members.last.uid ==
+                        _pageProvider.selectedUsers.first.uid ||
+                    _chats[i].members.first.uid ==
+                        _pageProvider.selectedUsers.first.uid) {
+                  _navigation.navigateToPage(ChatPage(chat: _chats[i]));
+                  break;
+                }
+              }
+            }
+          } else {
+            _pageProvider.createChat();
+          }
         },
       ),
     );
