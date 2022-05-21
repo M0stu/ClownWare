@@ -158,34 +158,33 @@ class _UsersPageState extends State<UsersPage> {
         height: _deviceHeight * 0.08,
         width: _deviceWidth * 0.80,
         onPressed: () {
-          print("Hereeeeeeee     user page >> " +
-              _chats![0].members.first.uid +
-              "  " +
-              _pageProvider.selectedUsers.first.uid);
-          if (_chats.isNotEmpty) {
+          if (_chats!.isNotEmpty) {
             for (int i = 0; i < _chats.length; i++) {
               if (!_chats[i].group) {
+                print("Hereeeeeeee     user page >> " +
+                    _chats[i].members.last.name +
+                    "  " +
+                    _pageProvider.selectedUsers.first.name);
+                print("not group   >>>>  " + _chats[i].uid);
                 if (_chats[i].members.last.uid ==
                         _pageProvider.selectedUsers.first.uid ||
                     _chats[i].members.first.uid ==
                         _pageProvider.selectedUsers.first.uid) {
                   _navigation.navigateToPage(ChatPage(chat: _chats[i]));
                   break;
+                } else {
+                  print("object >>>>>>>>>>>>>>>>");
+                  //_pageProvider.createChat();
+                  // break;
                 }
-              } else if (_chats[i].group) {
-                print("group  >>>" + _chats[i].uid);
-                if (_chats[i].members.last.uid ==
-                        _pageProvider.selectedUsers.first.uid ||
-                    _chats[i].members.first.uid ==
-                        _pageProvider.selectedUsers.first.uid) {
-                  _navigation.navigateToPage(ChatPage(chat: _chats[i]));
-                  break;
-                }
+                // continue;
+              } else {
+                print("object >>>>>>>>>>>>>>>>22");
+                //_pageProvider.createChat();
               }
             }
-          } else {
-            _pageProvider.createChat();
           }
+          //_pageProvider.createChat();
         },
       ),
     );
