@@ -172,15 +172,7 @@ class _UsersPageState extends State<UsersPage> {
                         _pageProvider.selectedUsers.first.uid) {
                   _navigation.navigateToPage(ChatPage(chat: _chats[i]));
                   break;
-                } else {
-                  print("object >>>>>>>>>>>>>>>>");
-                  //_pageProvider.createChat();
-                  // break;
                 }
-                // continue;
-              } else {
-                print("object >>>>>>>>>>>>>>>>22");
-                //_pageProvider.createChat();
               }
             }
           }

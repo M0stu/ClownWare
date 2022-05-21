@@ -188,7 +188,7 @@ class _ChatPageState extends State<ChatPage> {
       width: _deviceWidth * 0.60,
       child: CustomMessageFormField(
         onSaved: (_value) {
-          _value != "" ? _pageProvider.message = _value : "";
+          _value != "" ? _pageProvider.message = _value : _pageProvider.message;
         },
         regEx: r"^(?!\s*$).+",
         hintText: "Type a message",
