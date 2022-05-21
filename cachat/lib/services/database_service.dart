@@ -13,16 +13,15 @@ class DatabaseService {
 
   DatabaseService() {}
 
-  Future<void> createUser(String _uid, String _email, String _firstName,
-      String _lastName, String _imageURL) async {
+  Future<void> createUser(
+      String _uid, String _email, String name, String _imageURL) async {
     try {
       await _db.collection(USER_COLLECTION).doc(_uid).set(
         {
           "email": _email,
           "image": _imageURL,
           "last_active": DateTime.now().toUtc(),
-          "first_name": _firstName,
-          "last_name": _lastName
+          "name": name,
         },
       );
     } catch (e) {
@@ -33,7 +32,7 @@ class DatabaseService {
   Future<DocumentSnapshot> getUser(String _uid) {
     return _db.collection(USER_COLLECTION).doc(_uid).get();
   }
-  //
+
   // Future<DocumentSnapshot> getUserUsingEmail(String _email) {
   //   return _db.collection(USER_COLLECTION).doc(_email).get();
   // }

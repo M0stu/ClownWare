@@ -204,7 +204,7 @@ class _LoginPageState extends State<LoginPage> {
           iconSrc: "Assets/icons/google.svg",
           press: () async {
             await GoogleSignIn().signIn().then((value) {
-              setState(() {
+              setState(() async {
                 userObj = value!;
               });
             });
@@ -224,7 +224,8 @@ class _LoginPageState extends State<LoginPage> {
             //   print("hereeeeeeeeeeeeeeeee" + userObj.id);
             //   await _auth.loginUsingEmailAndPassword(userObj.email, userObj.id);
             // }
-            print("hereeeeeeeeeeeeeeeee   " + userObj.email);
+            //await _db.getUserUsingEmail(userObj.email);
+            print("hereeeeeeeeeeeeeeeee   login page  " + userObj.email);
             await _auth.loginUsingEmailAndPassword(userObj.email, userObj.id);
           },
         ),

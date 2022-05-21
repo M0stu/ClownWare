@@ -1,6 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 
 class RoundedImageNetwork extends StatelessWidget {
   final String imagePath;
@@ -14,20 +15,26 @@ class RoundedImageNetwork extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: size,
-      width: size,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          fit: BoxFit.cover,
-          image: NetworkImage(imagePath),
-        ),
-        borderRadius: BorderRadius.all(
-          Radius.circular(size),
-        ),
-        color: Colors.black,
-      ),
-    );
+    return imagePath != ""
+        ? Container(
+            height: size,
+            width: size,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: NetworkImage(imagePath),
+              ),
+              borderRadius: BorderRadius.all(
+                Radius.circular(size),
+              ),
+              color: Colors.black,
+            ),
+          )
+        : Container(
+            height: size,
+            width: size,
+            child: ProfilePicture(name: "Hex", radius: size, fontsize: 20),
+          );
   }
 }
 

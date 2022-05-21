@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 //Widgets
@@ -88,7 +89,7 @@ class CustomListViewTileWithActivity extends StatelessWidget {
       leading: RoundedImageNetworkWithStatusIndicator(
         key: UniqueKey(),
         size: height / 2,
-        imagePath: imagePath,
+        imagePath: imagePath, //Chats Page
         isActive: isActive,
       ),
       title: Text(
@@ -153,7 +154,7 @@ class CustomChatListViewTile extends StatelessWidget {
                   key: UniqueKey(),
                   imagePath: sender.imageURL,
                   size: width * 0.085)
-              : Container(),
+              : const Text(""),
           SizedBox(
             width: width * 0.05,
           ),

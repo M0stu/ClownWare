@@ -34,7 +34,6 @@ class _UsersPageState extends State<UsersPage> {
   late double _deviceWidth;
   late AuthenticationProvider _auth;
   late UsersPageProvider _pageProvider;
-  //late ChatsPageProvider _chatsPageProvider;
   late NavigationService _navigation;
   final TextEditingController _searchFieldTextEditingController =
       TextEditingController();
@@ -71,15 +70,6 @@ class _UsersPageState extends State<UsersPage> {
             children: [
               TopBar(
                 'Users',
-                primaryAction: IconButton(
-                  icon: const Icon(
-                    Icons.logout,
-                    color: Color.fromRGBO(0, 82, 218, 1.0),
-                  ),
-                  onPressed: () {
-                    _auth.logout();
-                  },
-                ),
               ),
               CustomTextField(
                 onEditingComplete: (_value) {

@@ -18,19 +18,19 @@ class CloudStorageService {
 
   CloudStorageService() {}
 
-  Future<String?> saveUserImageToStorage(String _uid) async {
+  Future<String?> saveUserImageToStorage(
+      String _uid, PlatformFile _file) async {
     try {
-      Reference _ref = _storage.ref().child('images/users/$_uid/');
-
-      File f = await getImageFileFromAssets('Assets/img/profile.jpg');
-      UploadTask _task = _ref.putFile(f);
+      Reference _ref =
+          _storage.ref().child('images/users/$_uid/profile.${_file.extension}');
+      UploadTask _task = _ref.putFile(
+        File(_file.path!),
+      );
       return await _task.then(
         (_result) => _result.ref.getDownloadURL(),
       );
     } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
+      print(e);
     }
   }
 
@@ -51,7 +51,7 @@ class CloudStorageService {
   }
 
   Future<File> getImageFileFromAssets(String path) async {
-    final byteData = await rootBundle.load('assets/$path');
+    final byteData = await rootBundle.load(path);
 
     final file = File('${(await getTemporaryDirectory()).path}/$path');
     await file.writeAsBytes(byteData.buffer

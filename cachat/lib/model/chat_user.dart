@@ -2,7 +2,7 @@ class ChatUser {
   final String uid;
   final String name;
   final String email;
-  final String imageURL;
+  late final String imageURL;
   late DateTime lastSeen;
 
   ChatUser({

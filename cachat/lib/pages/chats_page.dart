@@ -72,15 +72,6 @@ class _ChatsPageState extends State<ChatsPage> {
             children: [
               TopBar(
                 'Chats',
-                primaryAction: IconButton(
-                  icon: const Icon(
-                    Icons.logout,
-                    color: Color.fromRGBO(0, 82, 218, 1.0),
-                  ),
-                  onPressed: () {
-                    _auth.logout();
-                  },
-                ),
               ),
               _chatsList(),
             ],

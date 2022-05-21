@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 class TopBar extends StatelessWidget {
   String _barTitle;
-  Widget? primaryAction;
   Widget? secondaryAction;
   double? fontSize;
   late double _deviceHeight;
@@ -12,7 +11,6 @@ class TopBar extends StatelessWidget {
 
   TopBar(
     this._barTitle, {
-    this.primaryAction,
     this.secondaryAction,
     this.fontSize = 40,
   });
@@ -35,7 +33,6 @@ class TopBar extends StatelessWidget {
         children: [
           if (secondaryAction != null) secondaryAction!,
           _titleBar(),
-          if (primaryAction != null) primaryAction!,
         ],
       ),
     );

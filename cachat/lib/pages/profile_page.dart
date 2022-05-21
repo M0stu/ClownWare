@@ -52,8 +52,17 @@ class _ProfilePageState extends State<ProfilePage> {
             'Profile',
           ),
           ProfilePic(),
+          Text(
+            _auth.user.name,
+            style: const TextStyle(
+              color: Colors.white70,
+              fontSize: 25,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
           //_profileImageField(),
           const SizedBox(height: 20),
+
           ProfileMenu(
             text: "My Account",
             icon: "Assets/icons/User Icon.svg",
@@ -86,34 +95,34 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  Widget _profileImageField() {
-    return GestureDetector(
-      onTap: () {
-        GetIt.instance.get<MediaService>().pickImageFromLibrary().then(
-          (_file) {
-            setState(
-              () {
-                _profileImage = _file;
-              },
-            );
-          },
-        );
-      },
-      child: () {
-        if (_profileImage != null) {
-          return RoundedImageFile(
-            key: UniqueKey(),
-            image: _profileImage!,
-            size: _deviceHeight * 0.15,
-          );
-        } else {
-          return RoundedImageNetwork(
-            key: UniqueKey(),
-            imagePath: "https://i.pravatar.cc/150?img=56",
-            size: _deviceHeight * 0.15,
-          );
-        }
-      }(),
-    );
-  }
+  // Widget _profileImageField() {
+  //   return GestureDetector(
+  //     onTap: () {
+  //       GetIt.instance.get<MediaService>().pickImageFromLibrary().then(
+  //         (_file) {
+  //           setState(
+  //             () {
+  //               _profileImage = _file;
+  //             },
+  //           );
+  //         },
+  //       );
+  //     },
+  //     child: () {
+  //       if (_profileImage != null) {
+  //         return RoundedImageFile(
+  //           key: UniqueKey(),
+  //           image: _profileImage!,
+  //           size: _deviceHeight * 0.15,
+  //         );
+  //       } else {
+  //         return RoundedImageNetwork(
+  //           key: UniqueKey(),
+  //           imagePath: "https://i.pravatar.cc/150?img=56",
+  //           size: _deviceHeight * 0.15,
+  //         );
+  //       }
+  //     }(),
+  //   );
+  // }
 }

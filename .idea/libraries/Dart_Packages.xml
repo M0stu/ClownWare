@@ -270,6 +270,13 @@
             </list>
           </value>
         </entry>
+        <entry key="flutter_profile_picture">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../../../../src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_profile_picture-2.0.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="flutter_spinkit">
           <value>
             <list>
@@ -695,6 +702,7 @@
       <root url="file://$PROJECT_DIR$/../../../../../src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_keyboard_visibility_web-2.0.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_lints-1.0.4/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-2.0.5/lib" />
+      <root url="file://$PROJECT_DIR$/../../../../../src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_profile_picture-2.0.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_spinkit-5.1.0/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_svg-1.0.3/lib" />
       <root url="file://$PROJECT_DIR$/../../../../../src/flutter/flutter/.pub-cache/hosted/pub.dartlang.org/get_it-7.2.0/lib" />

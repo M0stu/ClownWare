@@ -1,6 +1,7 @@
 //Packages
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 
@@ -39,12 +40,9 @@ class _RegisterPageState extends State<RegisterPage> {
   String? _email;
   String? _password;
   String? _cPassword;
-  String? _firstName;
-  String? _lastName;
+  String? _name;
   PlatformFile? _profileImage;
   final _registerFormKey = GlobalKey<FormState>();
-
-  //late GoogleSignInAccount userObj;
   @override
   Widget build(BuildContext context) {
     _auth = Provider.of<AuthenticationProvider>(context);
@@ -85,7 +83,6 @@ class _RegisterPageState extends State<RegisterPage> {
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                //  _profileImageField(),
                 _pageTitle(),
                 SizedBox(
                   height: _deviceHeight * 0.03,
@@ -149,27 +146,13 @@ class _RegisterPageState extends State<RegisterPage> {
           CustomTextFormField(
             onSaved: (_value) {
               setState(() {
-                _firstName = _value;
+                _name = _value;
               });
             },
-            regEx: r'.{4,}',
-            hintText: "First Name",
+            regEx: r'.{8,}',
+            hintText: "Name",
             obscureText: false,
-            icon: Icons.supervised_user_circle,
-          ),
-          SizedBox(
-            height: _deviceHeight * 0.020,
-          ),
-          CustomTextFormField(
-            onSaved: (_value) {
-              setState(() {
-                _lastName = _value;
-              });
-            },
-            regEx: r'.{4,}',
-            hintText: "Last Name",
-            obscureText: false,
-            icon: Icons.supervised_user_circle,
+            icon: Icons.account_circle,
           ),
           SizedBox(
             height: _deviceHeight * 0.020,
@@ -225,21 +208,16 @@ class _RegisterPageState extends State<RegisterPage> {
       width: _deviceWidth * 0.65,
       onPressed: () async {
         if (_registerFormKey.currentState!
-                .validate() /*&&
-            _profileImage != null*/
+                .validate() /**&&
+            _profileImage != null**/
             ) {
           _registerFormKey.currentState!.save();
           String? _uid = await _auth.registerUserUsingEmailAndPassword(
               _email!, _password!);
+          // String? _imageURL =
+          //     await _cloudStorage.saveUserImageToStorage(_uid!, _profileImage!);
+          await _db.createUser(_uid!, _email!, _name!, "");
 
-          //String? _imageURL =
-          //    await _cloudStorage.saveUserImageToStorage(_uid!, _profileImage!);
-          var imgupload = await _cloudStorage.saveUserImageToStorage(_uid!);
-
-          await _db.createUser(
-              _uid, _email!, _firstName!, _lastName!, "_imageURL!");
-
-          //_navigation.goBack();
           await _auth.logout();
           await _auth.loginUsingEmailAndPassword(_email!, _password!);
         }

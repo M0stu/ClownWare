@@ -1,6 +1,9 @@
 import 'package:cachat/widgets/rounded_image.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/authentication_provider.dart';
 
 class TopBar extends StatelessWidget {
   String _barTitle;
@@ -10,7 +13,7 @@ class TopBar extends StatelessWidget {
   PlatformFile? _profileImage;
   late double _deviceHeight;
   late double _deviceWidth;
-
+  late AuthenticationProvider _auth;
   TopBar(
     this._barTitle, {
     this.primaryAction,
@@ -20,6 +23,7 @@ class TopBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _auth = Provider.of<AuthenticationProvider>(context);
     _deviceHeight = MediaQuery.of(context).size.height;
     _deviceWidth = MediaQuery.of(context).size.width;
     return _buildUI();
@@ -41,7 +45,7 @@ class TopBar extends StatelessWidget {
               RoundedImageNetworkWithStatusIndicator(
                 key: UniqueKey(),
                 size: 40,
-                imagePath: "imagePath",
+                imagePath: _auth.user.imageURL,
                 isActive: false,
               ),
             ],
