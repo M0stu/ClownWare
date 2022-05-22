@@ -14,8 +14,10 @@ class TopBar extends StatelessWidget {
   late double _deviceHeight;
   late double _deviceWidth;
   late AuthenticationProvider _auth;
+  String _path;
   TopBar(
-    this._barTitle, {
+    this._barTitle,
+    this._path, {
     this.primaryAction,
     this.secondaryAction,
     this.fontSize = 40,
@@ -45,7 +47,7 @@ class TopBar extends StatelessWidget {
               RoundedImageNetworkWithStatusIndicator(
                 key: UniqueKey(),
                 size: 40,
-                imagePath: _auth.user.imageURL,
+                imagePath: _path,
                 isActive: false,
               ),
             ],

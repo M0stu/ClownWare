@@ -204,28 +204,16 @@ class _LoginPageState extends State<LoginPage> {
           iconSrc: "Assets/icons/google.svg",
           press: () async {
             await GoogleSignIn().signIn().then((value) {
-              setState(() async {
+              setState(() {
                 userObj = value!;
               });
             });
 
-            // if (_db.getUserUsingEmail(userObj.email) != userObj.) {
-            //   print("hereeeeeeeeeeeeeeeee   true   " +
-            //       userObj.id +
-            //       "  " +
-            //       _db.getUserUsingEmail(userObj.email).toString());
-            //   String? _uid = await _auth.registerUserUsingEmailAndPassword(
-            //       userObj.email, userObj.id);
-            //   await _db.createUser(_uid!, userObj.email, userObj.displayName!,
-            //       userObj.photoUrl!);
-            //   await _auth.logout();
-            //   await _auth.loginUsingEmailAndPassword(userObj.email, userObj.id);
-            // } else {
-            //   print("hereeeeeeeeeeeeeeeee" + userObj.id);
-            //   await _auth.loginUsingEmailAndPassword(userObj.email, userObj.id);
-            // }
-            //await _db.getUserUsingEmail(userObj.email);
-            print("hereeeeeeeeeeeeeeeee   login page  " + userObj.email);
+            // String? _uid = await _auth.registerUserUsingEmailAndPassword(
+            //     userObj.email, userObj.id);
+            // await _db.createUser(
+            //     _uid!, userObj.email, userObj.displayName!, userObj.photoUrl!);
+            await _auth.logout();
             await _auth.loginUsingEmailAndPassword(userObj.email, userObj.id);
           },
         ),

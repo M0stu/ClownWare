@@ -31,6 +31,7 @@ class ChatsPage extends StatefulWidget {
 }
 
 class _ChatsPageState extends State<ChatsPage> {
+  final List<String> _chatTitle = ["", "", "", "", "", "", ""];
   late double _deviceHeight;
   late double _deviceWidth;
   late NavigationService _navigation;
@@ -90,9 +91,7 @@ class _ChatsPageState extends State<ChatsPage> {
             return ListView.builder(
               itemCount: _chats.length,
               itemBuilder: (BuildContext _context, int _index) {
-                return _chatTile(
-                  _chats[_index],
-                );
+                return _chatTile(_chats[_index], _chats.length);
               },
             );
           } else {
@@ -113,7 +112,7 @@ class _ChatsPageState extends State<ChatsPage> {
     );
   }
 
-  Widget _chatTile(Chat _chat) {
+  Widget _chatTile(Chat _chat, int _chatLength) {
     List<ChatUser> _recepients = _chat.recepients();
     bool _isActive = _recepients.any((_d) => _d.wasRecentlyActive());
     String _subtitleText = "";
@@ -122,7 +121,12 @@ class _ChatsPageState extends State<ChatsPage> {
           ? "Media Attachment"
           : _chat.messages.first.content;
     }
+    _chatTitle.length == _chatLength;
+    _chatTitle.add(_chat.title());
     print("Chat Title hereeeeeeeeeeeee      " + _chat.title());
+    //_chatTitle.add(_chat.title());
+
+    //print(_chatTitle.isEmpty);
     return CustomListViewTileWithActivity(
       height: _deviceHeight * 0.12,
       title: _chat.title(),
@@ -133,6 +137,7 @@ class _ChatsPageState extends State<ChatsPage> {
       onTap: () {
         setSenderName(_chat.title());
         print("senderName     >>     " + getSenderName());
+        _pageProvider.chatTitleChatPage = _chatTitle;
         _navigation.navigateToPage(
           ChatPage(chat: _chat),
         );

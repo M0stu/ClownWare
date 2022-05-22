@@ -9,20 +9,22 @@ import 'package:flutter/foundation.dart';
 //import 'package:image_picker/image_picker.dart';
 
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 
 const String USER_COLLECTION = "Users";
 
 class CloudStorageService {
   final FirebaseStorage _storage = FirebaseStorage.instance;
-
+  File? imageFile;
   CloudStorageService() {}
 
   Future<String?> saveUserImageToStorage(
-      String _uid, PlatformFile _file) async {
+      String _uid, PlatformFile? _file) async {
     try {
-      Reference _ref =
-          _storage.ref().child('images/users/$_uid/profile.${_file.extension}');
+      Reference _ref = _storage
+          .ref()
+          .child('images/users/$_uid/Profile.${_file!.extension}');
       UploadTask _task = _ref.putFile(
         File(_file.path!),
       );
@@ -48,15 +50,5 @@ class CloudStorageService {
     } catch (e) {
       print(e);
     }
-  }
-
-  Future<File> getImageFileFromAssets(String path) async {
-    final byteData = await rootBundle.load(path);
-
-    final file = File('${(await getTemporaryDirectory()).path}/$path');
-    await file.writeAsBytes(byteData.buffer
-        .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
-
-    return file;
   }
 }

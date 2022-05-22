@@ -33,10 +33,6 @@ class DatabaseService {
     return _db.collection(USER_COLLECTION).doc(_uid).get();
   }
 
-  // Future<DocumentSnapshot> getUserUsingEmail(String _email) {
-  //   return _db.collection(USER_COLLECTION).doc(_email).get();
-  // }
-
   Future<QuerySnapshot> getUsers({String? name}) {
     Query _query = _db.collection(USER_COLLECTION);
     if (name != null) {

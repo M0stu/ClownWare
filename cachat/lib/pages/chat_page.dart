@@ -79,7 +79,10 @@ class _ChatPageState extends State<ChatPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   TopBar(
-                    widget.chat.title(),
+                    widget.chat.title().length >= 15
+                        ? "Group Chat"
+                        : widget.chat.title(),
+                    widget.chat.imageURL(),
                     fontSize: 10,
                     primaryAction: IconButton(
                       icon: const Icon(

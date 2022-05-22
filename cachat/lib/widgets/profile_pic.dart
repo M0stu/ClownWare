@@ -73,13 +73,13 @@ class _ProfilePicState extends State<ProfilePic> {
                     (_file) {
                       setState(
                         () {
-                          _auth.user.imageURL = _file as String;
+                          _profileImage = _file;
                         },
                       );
                     },
                   );
-                  //await getImage();
-                  //await _cloudStorage.saveUserImageToStorage(_auth.user.uid);
+                  (await _cloudStorage.saveUserImageToStorage(
+                      _auth.user.uid, _profileImage));
                   print("hereeeeeeeeeeeeeeeeeeeeeeeeeeee   " +
                       _auth.user.imageURL);
                 },
@@ -90,15 +90,5 @@ class _ProfilePicState extends State<ProfilePic> {
         ],
       ),
     );
-  }
-
-  Future getImage() async {
-    var image;
-    image = (await ImagePicker.platform.pickImage(source: ImageSource.gallery))
-        as File;
-    setState(() {
-      _profileImage = image;
-      print('Image Path $image');
-    });
   }
 }

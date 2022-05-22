@@ -158,25 +158,15 @@ class _UsersPageState extends State<UsersPage> {
         height: _deviceHeight * 0.08,
         width: _deviceWidth * 0.80,
         onPressed: () {
-          if (_chats!.isNotEmpty) {
-            for (int i = 0; i < _chats.length; i++) {
-              if (!_chats[i].group) {
-                print("Hereeeeeeee     user page >> " +
-                    _chats[i].members.last.name +
-                    "  " +
-                    _pageProvider.selectedUsers.first.name);
-                print("not group   >>>>  " + _chats[i].uid);
-                if (_chats[i].members.last.uid ==
-                        _pageProvider.selectedUsers.first.uid ||
-                    _chats[i].members.first.uid ==
-                        _pageProvider.selectedUsers.first.uid) {
-                  _navigation.navigateToPage(ChatPage(chat: _chats[i]));
-                  break;
-                }
-              }
-            }
-          }
-          //_pageProvider.createChat();
+          // for (int i = 0;
+          //     i < _chatsPageProvider.chatTitleChatPage!.length;
+          //     i++) {
+          //   if (_pageProvider.selectedUsers.first.name ==
+          //       _chatsPageProvider.chatTitleChatPage?.elementAt(i)) {
+          //     print(_chatsPageProvider.chatTitleChatPage!.elementAt(i));
+          //   }
+          // }
+          _pageProvider.createChat();
         },
       ),
     );
