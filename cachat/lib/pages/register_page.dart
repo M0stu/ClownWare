@@ -43,6 +43,7 @@ class _RegisterPageState extends State<RegisterPage> {
   String? _name;
   PlatformFile? _profileImage;
   final _registerFormKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     _auth = Provider.of<AuthenticationProvider>(context);
@@ -51,6 +52,8 @@ class _RegisterPageState extends State<RegisterPage> {
     _navigation = GetIt.instance.get<NavigationService>();
     _deviceHeight = MediaQuery.of(context).size.height;
     _deviceWidth = MediaQuery.of(context).size.width;
+    //Widget okButton =
+    //AlertDialog alert =
     return _buildUI();
   }
 
@@ -187,9 +190,7 @@ class _RegisterPageState extends State<RegisterPage> {
           CustomPassFormField(
             onSaved: (_value) {
               setState(() {
-                _password == _cPassword
-                    ? _value
-                    : print("Password does not match");
+                _cPassword = _value;
               });
             },
             regEx: r".{8,}",
@@ -207,10 +208,8 @@ class _RegisterPageState extends State<RegisterPage> {
       height: _deviceHeight * 0.062,
       width: _deviceWidth * 0.65,
       onPressed: () async {
-        if (_registerFormKey.currentState!
-                .validate() /**&&
-            _profileImage != null**/
-            ) {
+        if (_registerFormKey.currentState!.validate() &&
+            _password == _cPassword) {
           _registerFormKey.currentState!.save();
           String? _uid = await _auth.registerUserUsingEmailAndPassword(
               _email!, _password!);
@@ -220,6 +219,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
           await _auth.logout();
           await _auth.loginUsingEmailAndPassword(_email!, _password!);
+        } else {
+          showAlert();
         }
       },
     );
@@ -273,6 +274,35 @@ class _RegisterPageState extends State<RegisterPage> {
         )
       ],
       mainAxisAlignment: MainAxisAlignment.center,
+    );
+  }
+
+  Future showAlert() {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            "Credentials Check",
+            style: TextStyle(fontSize: 25, color: Colors.white54),
+          ),
+          content: const Text("Please Check the Credentials You have entered!",
+              style: TextStyle(fontSize: 18, color: Colors.white)),
+          backgroundColor: Colors.indigo,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
+          //contentPadding: EdgeInsets.zero,
+          actions: [
+            TextButton(
+              child: const Text("OK",
+                  style: TextStyle(fontSize: 18, color: Colors.white)),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        );
+      },
     );
   }
 }

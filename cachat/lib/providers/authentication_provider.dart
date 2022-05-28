@@ -2,6 +2,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 //Services
@@ -88,8 +89,8 @@ class AuthenticationProvider extends ChangeNotifier {
       if (kDebugMode) {
         print(e);
       }
+      return null;
     }
-    return null;
   }
 
   Future<void> logout() async {

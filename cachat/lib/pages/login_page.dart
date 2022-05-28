@@ -178,6 +178,8 @@ class _LoginPageState extends State<LoginPage> {
             if (kDebugMode) {
               print("Email: $_email, Password: $_password");
             }
+          } else {
+            showAlert();
           }
         });
   }
@@ -187,7 +189,7 @@ class _LoginPageState extends State<LoginPage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         SocialIcon(
-          iconSrc: "Assets/icons/facebook.svg",
+          iconSrc: "Assets/icons/smartphone.svg",
           press: () async {
             final userCredential = await _auth.signInWithFacebook();
             if (userCredential != null) {
@@ -242,6 +244,35 @@ class _LoginPageState extends State<LoginPage> {
         )
       ],
       mainAxisAlignment: MainAxisAlignment.center,
+    );
+  }
+
+  Future showAlert() {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text(
+            "Credentials Check",
+            style: TextStyle(fontSize: 25, color: Colors.white54),
+          ),
+          content: const Text("Please Check the Credentials You have entered!",
+              style: TextStyle(fontSize: 18, color: Colors.white)),
+          backgroundColor: Colors.indigo,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
+          //contentPadding: EdgeInsets.zero,
+          actions: [
+            TextButton(
+              child: const Text("OK",
+                  style: TextStyle(fontSize: 18, color: Colors.white)),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        );
+      },
     );
   }
 }

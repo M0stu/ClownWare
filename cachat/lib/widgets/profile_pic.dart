@@ -78,8 +78,8 @@ class _ProfilePicState extends State<ProfilePic> {
                       );
                     },
                   );
-                  (await _cloudStorage.saveUserImageToStorage(
-                      _auth.user.uid, _profileImage));
+                  await _cloudStorage.saveUserImageToStorage(
+                      _auth.user.uid, _profileImage);
                   print("hereeeeeeeeeeeeeeeeeeeeeeeeeeee   " +
                       _auth.user.imageURL);
                 },
