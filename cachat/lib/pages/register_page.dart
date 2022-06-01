@@ -1,8 +1,12 @@
 //Packages
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 import 'package:get_it/get_it.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 //Services
@@ -41,7 +45,7 @@ class _RegisterPageState extends State<RegisterPage> {
   String? _password;
   String? _cPassword;
   String? _name;
-  PlatformFile? _profileImage;
+  XFile? _profileImage;
   final _registerFormKey = GlobalKey<FormState>();
 
   @override
@@ -121,19 +125,35 @@ class _RegisterPageState extends State<RegisterPage> {
         );
       },
       child: () {
-        if (_profileImage != null) {
-          return RoundedImageFile(
+        return Semantics(
+          label: 'Image Testing',
+          child: ListView.builder(
             key: UniqueKey(),
-            image: _profileImage!,
-            size: _deviceHeight * 0.15,
-          );
-        } else {
-          return RoundedImageNetwork(
-            key: UniqueKey(),
-            imagePath: "https://i.pravatar.cc/150?img=56",
-            size: _deviceHeight * 0.15,
-          );
-        }
+            itemBuilder: (BuildContext context, int index) {
+              // Why network for web?
+              // See https://pub.dev/packages/image_picker#getting-ready-for-the-web-platform
+              return Semantics(
+                label: 'image_picker_example_picked_image',
+                child: kIsWeb
+                    ? Image.network("https://i.pravatar.cc/150?img=56")
+                    : Image.file(File(_profileImage!.path)),
+              );
+            },
+          ),
+        );
+
+        // if (_profileImage != null) {
+        //   return RoundedImageFile(
+        //     key: UniqueKey(),
+        //     image: Image.file(File(_profileImage!.path)),
+        //     size: _deviceHeight * 0.15,
+        //   );
+        // } else {
+        //   return RoundedImageNetwork(
+        //     key: UniqueKey(),
+        //     imagePath: "https://i.pravatar.cc/150?img=56",
+        //     size: _deviceHeight * 0.15,
+        //   );
       }(),
     );
   }

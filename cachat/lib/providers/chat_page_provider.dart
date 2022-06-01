@@ -1,6 +1,7 @@
 import 'dart:async';
 
 //Packages
+import 'package:cross_file/src/types/interface.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -114,7 +115,7 @@ class ChatPageProvider extends ChangeNotifier {
 
   void sendImageMessage() async {
     try {
-      PlatformFile? _file = await _media.pickImageFromLibrary();
+      XFile? _file = await _media.pickImageFromLibrary();
       if (_file != null) {
         String? _downloadURL = await _storage.saveChatImageToStorage(
             _chatId, _auth.user.uid, _file);

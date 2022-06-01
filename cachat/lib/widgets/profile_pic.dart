@@ -27,7 +27,7 @@ class ProfilePic extends StatefulWidget {
 class _ProfilePicState extends State<ProfilePic> {
   //late File _imageFile;
   late AuthenticationProvider _auth;
-  PlatformFile? _profileImage;
+  XFile? _profileImage;
   late double _deviceHeight;
   late CloudStorageService _cloudStorage;
   @override
