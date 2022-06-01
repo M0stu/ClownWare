@@ -10,6 +10,10 @@ import '../widgets/rounded_image.dart';
 import '../widgets/top_bar.dart';
 import '../widgets/profile_menu.dart';
 
+//Services
+import '../services/cloud_storage_service.dart';
+import '../services/database_service.dart';
+
 class ProfilePage extends StatefulWidget {
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -26,12 +30,19 @@ class _ProfilePageState extends State<ProfilePage> {
 
   PlatformFile? _profileImage;
 
+  late CloudStorageService _storage;
+
+  late DatabaseService _db;
+
   @override
   Widget build(BuildContext context) {
+    _storage = GetIt.instance.get<CloudStorageService>();
     _deviceHeight = MediaQuery.of(context).size.height;
     _deviceWidth = MediaQuery.of(context).size.width;
     _auth = Provider.of<AuthenticationProvider>(context);
     _navigation = GetIt.instance.get<NavigationService>();
+    _db = GetIt.instance.get<DatabaseService>();
+
     return _buildUI();
   }
 
@@ -51,7 +62,7 @@ class _ProfilePageState extends State<ProfilePage> {
           TopBar(
             'Profile',
           ),
-          ProfilePic(),
+          // ProfilePic(),
           Text(
             _auth.user.name,
             style: const TextStyle(
@@ -60,8 +71,8 @@ class _ProfilePageState extends State<ProfilePage> {
               fontWeight: FontWeight.w600,
             ),
           ),
-          //_profileImageField(),
-          const SizedBox(height: 20),
+          _profileImageField(),
+          const SizedBox(height: 10),
 
           ProfileMenu(
             text: "My Account",
@@ -95,34 +106,40 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  // Widget _profileImageField() {
-  //   return GestureDetector(
-  //     onTap: () {
-  //       GetIt.instance.get<MediaService>().pickImageFromLibrary().then(
-  //         (_file) {
-  //           setState(
-  //             () {
-  //               _profileImage = _file;
-  //             },
-  //           );
-  //         },
-  //       );
-  //     },
-  //     child: () {
-  //       if (_profileImage != null) {
-  //         return RoundedImageFile(
-  //           key: UniqueKey(),
-  //           image: _profileImage!,
-  //           size: _deviceHeight * 0.15,
-  //         );
-  //       } else {
-  //         return RoundedImageNetwork(
-  //           key: UniqueKey(),
-  //           imagePath: "https://i.pravatar.cc/150?img=56",
-  //           size: _deviceHeight * 0.15,
-  //         );
-  //       }
-  //     }(),
-  //   );
-  // }
+  Widget _profileImageField() {
+    return GestureDetector(
+      onTap: () {
+        GetIt.instance.get<MediaService>().pickImageFromLibrary().then(
+          (_file) {
+            setState(
+              () async {
+                _profileImage = _file;
+                String? imageURL = await _storage.saveUserImageToStorage(
+                    _auth.user.uid, _file);
+                await _db.createUser(_auth.user.uid, _auth.user.email,
+                    _auth.user.name, imageURL!);
+
+                print(imageURL);
+              },
+            );
+          },
+        );
+      },
+      child: () {
+        if (_profileImage != null) {
+          return RoundedImageFile(
+            key: UniqueKey(),
+            image: _profileImage!,
+            size: _deviceHeight * 0.15,
+          );
+        } else {
+          return RoundedImageNetwork(
+            key: UniqueKey(),
+            imagePath: "https://i.pravatar.cc/150?img=56",
+            size: _deviceHeight * 0.15,
+          );
+        }
+      }(),
+    );
+  }
 }
