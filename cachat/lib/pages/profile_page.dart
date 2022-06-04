@@ -74,20 +74,17 @@ class _ProfilePageState extends State<ProfilePage> {
           //_profileImageField(),
           const SizedBox(height: 10),
           ProfileMenu(
-            text: "My Account",
+            
+            text: "Account Settings",
             icon: "Assets/icons/User Icon.svg",
-            press: () => {},
+            press: () => {_navigation.navigateToRoute('/setting')},
           ),
           ProfileMenu(
             text: "Notifications",
             icon: "Assets/icons/Bell.svg",
             press: () {},
           ),
-          ProfileMenu(
-            text: "Settings",
-            icon: "Assets/icons/Settings.svg",
-            press: () {},
-          ),
+           
           ProfileMenu(
             text: "User Agreement",
             icon: "Assets/icons/user-agreement.svg",

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ProfileMenu extends StatelessWidget {
-  const ProfileMenu({
+  const ProfileMenu( {
     Key? key,
     required this.text,
     required this.icon,
