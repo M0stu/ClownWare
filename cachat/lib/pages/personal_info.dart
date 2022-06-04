@@ -16,41 +16,34 @@ import '../widgets/profile_menu.dart';
 import '../services/cloud_storage_service.dart';
 import '../services/database_service.dart';
 
-class personal_info extends StatefulWidget {
+class PersonalInfo extends StatefulWidget {
   @override
-  State<personal_info> createState() => _personal_infoState();
+  State<PersonalInfo> createState() => _PersonalInfoState();
 }
 
-class _personal_infoState extends State<personal_info> {
+class _PersonalInfoState extends State<PersonalInfo> {
   late double _deviceHeight;
   late double _deviceWidth;
   late AuthenticationProvider _auth;
-  late DatabaseService _db;
-  late CloudStorageService _cloudStorage;
   late NavigationService _navigation;
-  String? _email;
-  String? _password;
-  String? _cPassword;
-  String? _name;
-  PlatformFile? _profileImage;
+
   final _editFormKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-
     _deviceHeight = MediaQuery.of(context).size.height;
     _deviceWidth = MediaQuery.of(context).size.width;
-      _auth = Provider.of<AuthenticationProvider>(context);
-    _db = GetIt.instance.get<DatabaseService>();
-    _cloudStorage = GetIt.instance.get<CloudStorageService>();
+    _auth = Provider.of<AuthenticationProvider>(context);
     _navigation = GetIt.instance.get<NavigationService>();
     _deviceHeight = MediaQuery.of(context).size.height;
     _deviceWidth = MediaQuery.of(context).size.width;
-  
+
     return _buildUI();
   }
 
   Widget _buildUI() {
-    late AuthenticationProvider _auth = Provider.of<AuthenticationProvider>(context);
+    late AuthenticationProvider _auth =
+        Provider.of<AuthenticationProvider>(context);
+
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
@@ -79,23 +72,6 @@ class _personal_infoState extends State<personal_info> {
             children: [
               const SizedBox(height: 10),
               personal_infoWidget(),
-            /*  ProfileMenu(
-                
-                  text:("Name  \n" + _auth.user.name + "\n " + "Email \n" + _auth.user.email +"\n" + "Photo \n" + _auth.user.imageURL   ),
-             
-                icon: "Assets/icons/privacy-policy.svg",
-                press: () => {
-                  // _navigation.navigateToRoute('/Name'),
-                      
-                },
-              ),
-              ProfileMenu(
-                text: "Manage Account",
-                icon: "Assets/icons/terms-and-conditions.svg",
-                press: () {
-                  
-                },
-              ),*/
             ],
           ),
         ),
@@ -103,7 +79,8 @@ class _personal_infoState extends State<personal_info> {
     );
   }
 
-Widget personal_infoWidget () {
+  Widget personal_infoWidget() {
+    Size size = MediaQuery.of(context).size;
     return Form(
       key: _editFormKey,
       child: Column(
@@ -111,36 +88,62 @@ Widget personal_infoWidget () {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           
-      
-           Text(
-           "Name\n" + _auth.user.name + "\n",
+          Text(
+            "Name",
             style: const TextStyle(
               color: Colors.white70,
               fontSize: 25,
               fontWeight: FontWeight.w600,
-              
-              
+            ),
+          ),
+          Container(
+            alignment: Alignment.centerLeft,
+            width: size.width * 0.85,
+            decoration: BoxDecoration(
+              color: const Color.fromRGBO(30, 29, 37, 1.0),
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            height: 65.0,
+            child: Text(
+              _auth.user.name,
+              style: const TextStyle(
+                color: Colors.white70,
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
           SizedBox(
             height: _deviceHeight * 0.020,
           ),
-            Text(
-           "Email\n" + _auth.user.email +"\n",
+          Text(
+            "Email",
             style: const TextStyle(
               color: Colors.white70,
               fontSize: 25,
               fontWeight: FontWeight.w600,
-               
+            ),
+          ),
+          Container(
+            alignment: Alignment.centerLeft,
+            width: size.width * 0.85,
+            decoration: BoxDecoration(
+              color: const Color.fromRGBO(30, 29, 37, 1.0),
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            height: 65.0,
+            child: Text(
+              _auth.user.email,
+              style: const TextStyle(
+                color: Colors.white70,
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
           SizedBox(
             height: _deviceHeight * 0.020,
           ),
-          
-         
-         
         ],
       ),
     );

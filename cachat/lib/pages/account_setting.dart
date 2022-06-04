@@ -17,12 +17,12 @@ import '../widgets/profile_menu.dart';
 import '../services/cloud_storage_service.dart';
 import '../services/database_service.dart';
 
-class setting extends StatefulWidget {
+class AccountSetting extends StatefulWidget {
   @override
-  State<setting> createState() => _settingState();
+  State<AccountSetting> createState() => _AccountSettingState();
 }
 
-class _settingState extends State<setting> {
+class _AccountSettingState extends State<AccountSetting> {
   late double _deviceHeight;
 
   late double _deviceWidth;
@@ -42,7 +42,7 @@ class _settingState extends State<setting> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        title: Text('Settings'),
+        title: const Text('Account Settings'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios),
           color: Colors.white,
@@ -66,19 +66,18 @@ class _settingState extends State<setting> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(height: 10),
-            //  personal_info(),
               ProfileMenu(
                 text: "Personal Information",
                 icon: "Assets/icons/privacy-policy.svg",
-               press: () {
-                   _navigation.navigateToRoute('/personalinfo');
+                press: () {
+                  _navigation.navigateToRoute('/perInfo');
                 },
               ),
               ProfileMenu(
                 text: "Security",
                 icon: "Assets/icons/terms-and-conditions.svg",
                 press: () {
-                   _navigation.navigateToRoute('/security');
+                  // _navigation.navigateToRoute('/security');
                 },
               ),
             ],

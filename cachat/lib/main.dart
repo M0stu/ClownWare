@@ -1,6 +1,6 @@
 //import 'package:cachat/pages/settings.dart';
- 
-import 'package:cachat/pages/setting.dart';
+
+import 'package:cachat/pages/account_setting.dart';
 import 'package:flutter/material.dart';
 
 //Packages
@@ -66,12 +66,8 @@ class MainApp extends StatelessWidget {
           '/register': (BuildContext _context) => RegisterPage(),
           '/home': (BuildContext _context) => const HomePage(),
           '/userAG': (BuildContext _context) => UserAgreement(),
-          '/setting' :(BuildContext _context) => setting(),
-          '/personalinfo':(BuildContext _context) => personal_info(),
-          
-         
-          
-           
+          '/accSetting': (BuildContext _context) => AccountSetting(),
+          '/perInfo': (BuildContext _context) => PersonalInfo(),
         },
       ),
     );
