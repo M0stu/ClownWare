@@ -1,8 +1,8 @@
+import 'package:cachat/widgets/photoView.dart';
 import 'package:flutter/material.dart';
-
 //Packages
 import 'package:timeago/timeago.dart' as timeago;
-
+import 'package:photo_view/photo_view.dart';
 //Models
 import '../model/chat_message.dart';
 
@@ -114,9 +114,22 @@ class ImageMessageBubble extends StatelessWidget {
           Container(
             height: height,
             width: width,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              image: _image,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            PhotoViewUrl(urlImage: _image.image)));
+                print("Hereee >>>>>>>>>>> " + _image.image.toString());
+              },
+              child: PhotoView(
+                imageProvider: _image.image,
+                backgroundDecoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                disableGestures: true,
+              ),
             ),
           ),
           SizedBox(height: height * 0.02),
