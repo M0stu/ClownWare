@@ -14,6 +14,7 @@ import './pages/splash_page.dart';
 import './pages/login_page.dart';
 import './pages/home_page.dart';
 import './pages/register_page.dart';
+import './pages/user_agreement.dart';
 //Providers
 import './providers/authentication_provider.dart';
 
@@ -60,6 +61,7 @@ class MainApp extends StatelessWidget {
           '/login': (BuildContext _context) => LoginPage(),
           '/register': (BuildContext _context) => RegisterPage(),
           '/home': (BuildContext _context) => const HomePage(),
+          '/userAG': (BuildContext _context) => UserAgreement(),
         },
       ),
     );

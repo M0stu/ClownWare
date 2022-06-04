@@ -87,8 +87,8 @@ class _SplashPageState extends State<SplashPage> {
     GetIt.instance.registerSingleton<CloudStorageService>(
       CloudStorageService(),
     );
-    GetIt.instance.registerSingleton<PushNotificationService>(
-      PushNotificationService(),
-    );
+    // GetIt.instance.registerSingleton<PushNotificationService>(
+    //   PushNotificationService(),
+    // );
   }
 }

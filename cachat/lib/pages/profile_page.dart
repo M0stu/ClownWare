@@ -9,7 +9,7 @@ import '../widgets/profile_pic.dart';
 import '../widgets/rounded_image.dart';
 import '../widgets/top_bar.dart';
 import '../widgets/profile_menu.dart';
-
+import './user_agreement.dart';
 //Services
 import '../services/cloud_storage_service.dart';
 import '../services/database_service.dart';
@@ -62,7 +62,7 @@ class _ProfilePageState extends State<ProfilePage> {
           TopBar(
             'Profile',
           ),
-          // ProfilePic(),
+          ProfilePic(),
           Text(
             _auth.user.name,
             style: const TextStyle(
@@ -71,9 +71,8 @@ class _ProfilePageState extends State<ProfilePage> {
               fontWeight: FontWeight.w600,
             ),
           ),
-          _profileImageField(),
+          //_profileImageField(),
           const SizedBox(height: 10),
-
           ProfileMenu(
             text: "My Account",
             icon: "Assets/icons/User Icon.svg",
@@ -90,9 +89,11 @@ class _ProfilePageState extends State<ProfilePage> {
             press: () {},
           ),
           ProfileMenu(
-            text: "Help Center",
-            icon: "Assets/icons/Question mark.svg",
-            press: () {},
+            text: "User Agreement",
+            icon: "Assets/icons/user-agreement.svg",
+            press: () {
+              _navigation.navigateToRoute('/userAG');
+            },
           ),
           ProfileMenu(
             text: "Log Out",

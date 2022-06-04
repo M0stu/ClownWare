@@ -12,6 +12,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/authentication_provider.dart';
+import '../services/database_service.dart';
 import '../services/media_service.dart';
 import '../services/cloud_storage_service.dart';
 
@@ -30,12 +31,13 @@ class _ProfilePicState extends State<ProfilePic> {
   PlatformFile? _profileImage;
   late double _deviceHeight;
   late CloudStorageService _cloudStorage;
+  late DatabaseService _db;
   @override
   Widget build(BuildContext context) {
     _auth = Provider.of<AuthenticationProvider>(context);
     _deviceHeight = MediaQuery.of(context).size.height;
     _cloudStorage = GetIt.instance.get<CloudStorageService>();
-
+    _db = GetIt.instance.get<DatabaseService>();
     return SizedBox(
       height: 115,
       width: 115,
@@ -72,16 +74,20 @@ class _ProfilePicState extends State<ProfilePic> {
                       .then(
                     (_file) {
                       setState(
-                        () {
+                        () async {
                           _profileImage = _file;
+                          String? imageURL = await _cloudStorage
+                              .saveUserImageToStorage(_auth.user.uid, _file);
+                          await _db.createUser(_auth.user.uid, _auth.user.email,
+                              _auth.user.name, imageURL!);
+                          print("hereeeeeeeeeeeeeeeeeeeeeeeeeeee   " +
+                              _auth.user.imageURL);
                         },
                       );
                     },
                   );
-                  await _cloudStorage.saveUserImageToStorage(
-                      _auth.user.uid, _profileImage);
-                  print("hereeeeeeeeeeeeeeeeeeeeeeeeeeee   " +
-                      _auth.user.imageURL);
+                  // await _cloudStorage.saveUserImageToStorage(
+                  //     _auth.user.uid, _profileImage);
                 },
                 child: SvgPicture.asset("Assets/icons/Camera Icon.svg"),
               ),

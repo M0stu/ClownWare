@@ -1,9 +1,13 @@
 //Packages
+import 'package:cachat/pages/policy_dialog.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_profile_picture/flutter_profile_picture.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
+import 'package:animations/animations.dart';
+import 'package:flutter/gestures.dart';
 
 //Services
 import 'package:cachat/services/media_service.dart';
@@ -91,6 +95,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   height: _deviceHeight * 0.03,
                 ),
                 _registerForm(),
+                privacyPolicyLinkAndTermsOfService(),
                 SizedBox(
                   height: _deviceHeight * 0.04,
                 ),
@@ -303,6 +308,66 @@ class _RegisterPageState extends State<RegisterPage> {
           ],
         );
       },
+    );
+  }
+
+  Widget privacyPolicyLinkAndTermsOfService() {
+    return Container(
+      alignment: Alignment.center,
+      padding: const EdgeInsets.all(10),
+      child: Center(
+        child: Text.rich(
+          TextSpan(
+            text: 'By continuing, you agree to our ',
+            style: const TextStyle(fontSize: 12, color: Colors.white54),
+            children: <TextSpan>[
+              TextSpan(
+                  text: 'Terms of Service',
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: Colors.white54,
+                    decoration: TextDecoration.underline,
+                  ),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      showModal(
+                        context: context,
+                        configuration: const FadeScaleTransitionConfiguration(),
+                        builder: (context) {
+                          return PolicyDialog(
+                            mdFileName: 'terms_and_conditions.md',
+                          );
+                        },
+                      );
+                    }),
+              TextSpan(
+                text: ' and ',
+                style: const TextStyle(fontSize: 12, color: Colors.white54),
+                children: <TextSpan>[
+                  TextSpan(
+                    text: 'Privacy Policy',
+                    style: const TextStyle(
+                        fontSize: 12,
+                        color: Colors.white54,
+                        decoration: TextDecoration.underline),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return PolicyDialog(
+                              mdFileName: 'privacy_policy.md',
+                            );
+                          },
+                        );
+                      },
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
