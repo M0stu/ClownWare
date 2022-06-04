@@ -48,7 +48,7 @@ class TopBar extends StatelessWidget {
                 key: UniqueKey(),
                 size: 40,
                 imagePath: _path,
-                isActive: false,
+                isActive: true,
               ),
             ],
           ),
