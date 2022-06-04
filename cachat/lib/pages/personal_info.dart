@@ -88,12 +88,13 @@ class _PersonalInfoState extends State<PersonalInfo> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "Name",
-            style: const TextStyle(
+          const Text(
+            "Your Name",
+            style: TextStyle(
               color: Colors.white70,
-              fontSize: 25,
               fontWeight: FontWeight.w600,
+              fontSize: 22,
+              fontWeight: FontWeight.w500,
             ),
           ),
           Container(
@@ -109,19 +110,19 @@ class _PersonalInfoState extends State<PersonalInfo> {
               style: const TextStyle(
                 color: Colors.white70,
                 fontSize: 20,
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w400,
               ),
             ),
           ),
           SizedBox(
             height: _deviceHeight * 0.020,
           ),
-          Text(
-            "Email",
-            style: const TextStyle(
+          const Text(
+            "Your Email",
+            style: TextStyle(
               color: Colors.white70,
-              fontSize: 25,
-              fontWeight: FontWeight.w600,
+              fontSize: 22,
+              fontWeight: FontWeight.w500,
             ),
           ),
           Container(
@@ -137,7 +138,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
               style: const TextStyle(
                 color: Colors.white70,
                 fontSize: 20,
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w400,
               ),
             ),
           ),
