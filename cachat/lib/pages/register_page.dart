@@ -92,16 +92,16 @@ class _RegisterPageState extends State<RegisterPage> {
               children: [
                 _pageTitle(),
                 SizedBox(
-                  height: _deviceHeight * 0.03,
+                  height: _deviceHeight * 0.025,
                 ),
                 _registerForm(),
                 privacyPolicyLinkAndTermsOfService(),
                 SizedBox(
-                  height: _deviceHeight * 0.04,
+                  height: _deviceHeight * 0.015,
                 ),
                 _registerButton(),
                 SizedBox(
-                  height: _deviceHeight * 0.030,
+                  height: _deviceHeight * 0.015,
                 ),
                 _loginLink(),
               ],
