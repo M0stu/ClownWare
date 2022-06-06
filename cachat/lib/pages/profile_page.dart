@@ -63,12 +63,13 @@ class _ProfilePageState extends State<ProfilePage> {
             'Profile',
           ),
           ProfilePic(),
+          const SizedBox(height: 15),
           Text(
             _auth.user.name,
             style: const TextStyle(
               color: Colors.white70,
-              fontSize: 25,
-              fontWeight: FontWeight.w600,
+              fontSize: 22,
+              fontWeight: FontWeight.w500,
             ),
           ),
           //_profileImageField(),

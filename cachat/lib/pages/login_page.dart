@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:get_it/get_it.dart';
 
 //Widgets
+import '../providers/users_page_provider.dart';
 import '../services/database_service.dart';
 import '../widgets/custom_Einput_fields.dart';
 import '../widgets/custom_passInput_fields.dart';
@@ -31,7 +32,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   late double _deviceHeight;
   late double _deviceWidth;
-
+  late UsersPageProvider _usersPageProvider;
   late AuthenticationProvider _auth;
   late NavigationService _navigation;
   late DatabaseService _db;
@@ -48,52 +49,62 @@ class _LoginPageState extends State<LoginPage> {
     _auth = Provider.of<AuthenticationProvider>(context);
     _db = GetIt.instance.get<DatabaseService>();
     _navigation = GetIt.instance.get<NavigationService>();
-    return _buildUI();
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<UsersPageProvider>(
+          create: (_) => UsersPageProvider(_auth),
+        ),
+      ],
+      child: _buildUI(),
+    );
   }
 
   Widget _buildUI() {
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      body: Center(
-        child: SingleChildScrollView(
-          reverse: true,
-          padding: const EdgeInsets.all(35),
-          child: Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: _deviceWidth * 0.03,
-              vertical: _deviceHeight * 0.02,
-            ),
-            height: _deviceHeight * 0.98,
-            width: _deviceWidth * 0.97,
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                _pageTitle(),
-                SizedBox(
-                  height: _deviceHeight * 0.05,
-                ),
-                _loginForm(),
-                SizedBox(
-                  height: _deviceHeight * 0.022,
-                ),
-                _loginButton(),
-                SizedBox(
-                  height: _deviceHeight * 0.011,
-                ),
-                const OrDivider(),
-                _loginWithGoogleOrFacebook(),
-                SizedBox(
-                  height: _deviceHeight * 0.03,
-                ),
-                _registerLink(),
-              ],
+    return Builder(builder: (BuildContext _context) {
+      _usersPageProvider = _context.watch<UsersPageProvider>();
+      return Scaffold(
+        resizeToAvoidBottomInset: true,
+        body: Center(
+          child: SingleChildScrollView(
+            reverse: true,
+            padding: const EdgeInsets.all(35),
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: _deviceWidth * 0.03,
+                vertical: _deviceHeight * 0.02,
+              ),
+              height: _deviceHeight * 0.98,
+              width: _deviceWidth * 0.97,
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  _pageTitle(),
+                  SizedBox(
+                    height: _deviceHeight * 0.05,
+                  ),
+                  _loginForm(),
+                  SizedBox(
+                    height: _deviceHeight * 0.022,
+                  ),
+                  _loginButton(),
+                  SizedBox(
+                    height: _deviceHeight * 0.011,
+                  ),
+                  const OrDivider(),
+                  _loginWithGoogleOrPhoneNumber(),
+                  SizedBox(
+                    height: _deviceHeight * 0.03,
+                  ),
+                  _registerLink(),
+                ],
+              ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 
   Widget _pageTitle() {
@@ -181,7 +192,7 @@ class _LoginPageState extends State<LoginPage> {
         });
   }
 
-  Widget _loginWithGoogleOrFacebook() {
+  Widget _loginWithGoogleOrPhoneNumber() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -207,13 +218,28 @@ class _LoginPageState extends State<LoginPage> {
                 userObj = value!;
               });
             });
-
-            // String? _uid = await _auth.registerUserUsingEmailAndPassword(
-            //     userObj.email, userObj.id);
-            // await _db.createUser(
-            //     _uid!, userObj.email, userObj.displayName!, userObj.photoUrl!);
-            await _auth.logout();
-            await _auth.loginUsingEmailAndPassword(userObj.email, userObj.id);
+            bool createUser = false;
+            for (int i = 0; i < _usersPageProvider.users!.length; i++) {
+              if (userObj.email == _usersPageProvider.users![i].email) {
+                print("User Already Exist >>>>>>>");
+                await _auth.logout();
+                await _auth.loginUsingEmailAndPassword(
+                    userObj.email, userObj.id);
+                break;
+              }
+              if (i == _usersPageProvider.users!.length - 1) {
+                createUser = true;
+              }
+            }
+            if (createUser) {
+              print("Create User >>>>>>Login page");
+              String? _uid = await _auth.registerUserUsingEmailAndPassword(
+                  userObj.email, userObj.id);
+              await _db.createUser(_uid!, userObj.email, userObj.displayName!,
+                  userObj.photoUrl!);
+              await _auth.logout();
+              await _auth.loginUsingEmailAndPassword(userObj.email, userObj.id);
+            }
           },
         ),
       ],

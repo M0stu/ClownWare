@@ -50,7 +50,9 @@ class _CustomPassFormFieldState extends State<CustomPassFormField> {
             cursorColor: Colors.white,
             style: const TextStyle(color: Colors.white),
             validator: (_value) {
-              PasswordFieldValidator.validate(_value!);
+              return RegExp(r".{8,}").hasMatch(_value!)
+                  ? null
+                  : 'Enter a valid Password.';
             },
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.only(top: 15.0),

@@ -42,7 +42,11 @@ class CustomEmailFormField extends StatelessWidget {
             style: const TextStyle(color: Colors.white),
             obscureText: obscureText,
             validator: (_value) {
-              EmailFieldValidator.validate(_value!);
+              return RegExp(
+                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                      .hasMatch(_value!)
+                  ? null
+                  : 'Enter a valid Email.';
             },
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.only(top: 14.0),
