@@ -93,7 +93,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: _deviceHeight * 0.011,
                   ),
                   const OrDivider(),
-                  _loginWithGoogleOrPhoneNumber(),
+                  _loginWithGoogleOrFacebook(),
                   SizedBox(
                     height: _deviceHeight * 0.03,
                   ),
@@ -192,12 +192,12 @@ class _LoginPageState extends State<LoginPage> {
         });
   }
 
-  Widget _loginWithGoogleOrPhoneNumber() {
+  Widget _loginWithGoogleOrFacebook() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         SocialIcon(
-          iconSrc: "Assets/icons/smartphone.svg",
+          iconSrc: "Assets/icons/facebook.svg",
           press: () async {
             final userCredential = await _auth.signInWithFacebook();
             if (userCredential != null) {
@@ -222,7 +222,7 @@ class _LoginPageState extends State<LoginPage> {
             for (int i = 0; i < _usersPageProvider.users!.length; i++) {
               if (userObj.email == _usersPageProvider.users![i].email) {
                 print("User Already Exist >>>>>>>");
-                await _auth.logout();
+                //await _auth.logout();
                 await _auth.loginUsingEmailAndPassword(
                     userObj.email, userObj.id);
                 break;
@@ -279,7 +279,7 @@ class _LoginPageState extends State<LoginPage> {
             "Credentials Check",
             style: TextStyle(fontSize: 25, color: Colors.white54),
           ),
-          content: const Text("Please Check the Credentials You have entered!",
+          content: Text("Please Check the Credentials You have entered!",
               style: TextStyle(fontSize: 18, color: Colors.white)),
           backgroundColor: Colors.indigo,
           shape:

@@ -56,16 +56,44 @@ class AuthenticationProvider extends ChangeNotifier {
 
   Future<void> loginUsingEmailAndPassword(
       String _email, String _password) async {
+    String errorMessage;
     try {
       await _auth.signInWithEmailAndPassword(
           email: _email, password: _password);
       if (kDebugMode) {
         print(_auth.currentUser);
       }
-    } on FirebaseAuthException {
-      if (kDebugMode) {
-        print("Error Logging in Firebase detected ERROR");
+    } on FirebaseAuthException catch (error) {
+      switch (error.code) {
+        case "invalid-email":
+          errorMessage = "Your email address appears to be malformed.";
+          break;
+        case "wrong-password":
+          errorMessage = "Your password is wrong.";
+          break;
+        case "user-not-found":
+          errorMessage = "User with this email doesn't exist.";
+          break;
+        case "user-disabled":
+          errorMessage = "User with this email has been disabled.";
+          break;
+        case "too-many-requests":
+          errorMessage = "Too many requests";
+          break;
+        case "operation-not-allowed":
+          errorMessage = "Signing in with Email and Password is not enabled.";
+          break;
+        case "email-already-exists":
+          errorMessage = "The email is already being used.";
+          break;
+        default:
+          errorMessage = "An undefined Error happened.";
       }
+      if (kDebugMode) {
+        print(
+            "Error Logging in Firebase detected ERROR  >>> PLease Check Your Email and Your Password");
+      }
+      return Future.error(errorMessage);
     } catch (e) {
       if (kDebugMode) {
         print(e);
