@@ -171,8 +171,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 _email = _value;
               });
             },
-            regEx:
-                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
             hintText: "Email",
             obscureText: false,
           ),
@@ -185,7 +183,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 _password = _value;
               });
             },
-            regEx: r".{8,}",
             hintText: "Password",
             obscureText: true,
           ),
@@ -198,7 +195,6 @@ class _RegisterPageState extends State<RegisterPage> {
                 _cPassword = _value;
               });
             },
-            regEx: r".{8,}",
             hintText: "Confirm Password",
             obscureText: true,
           ),

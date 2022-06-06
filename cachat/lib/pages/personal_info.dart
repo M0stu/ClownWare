@@ -92,7 +92,6 @@ class _PersonalInfoState extends State<PersonalInfo> {
             "Your Name",
             style: TextStyle(
               color: Colors.white70,
-              fontWeight: FontWeight.w600,
               fontSize: 22,
               fontWeight: FontWeight.w500,
             ),

@@ -139,8 +139,6 @@ class _LoginPageState extends State<LoginPage> {
                 _email = _value;
               });
             },
-            regEx:
-                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
             hintText: "Email",
             obscureText: false,
           ),
@@ -154,7 +152,6 @@ class _LoginPageState extends State<LoginPage> {
                 print(_value);
               });
             },
-            regEx: r".{6,}",
             hintText: "Password",
             obscureText: true,
           ),

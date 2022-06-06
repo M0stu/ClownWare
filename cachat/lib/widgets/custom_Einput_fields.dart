@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 
+class EmailFieldValidator {
+  static String? validate(String value) {
+    return RegExp(
+                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+            .hasMatch(value)
+        ? null
+        : 'Enter a valid Email.';
+  }
+}
+
 class CustomEmailFormField extends StatelessWidget {
   final Function(String) onSaved;
-  final String regEx;
   final String hintText;
   final bool obscureText;
 
   CustomEmailFormField({
     required this.onSaved,
-    required this.regEx,
     required this.hintText,
     required this.obscureText,
   });
@@ -34,9 +42,7 @@ class CustomEmailFormField extends StatelessWidget {
             style: const TextStyle(color: Colors.white),
             obscureText: obscureText,
             validator: (_value) {
-              return RegExp(regEx).hasMatch(_value!)
-                  ? null
-                  : 'Enter a valid Email.';
+              EmailFieldValidator.validate(_value!);
             },
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.only(top: 14.0),

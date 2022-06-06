@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 
+class PasswordFieldValidator {
+  static String? validate(String value) {
+    return RegExp(r".{8,}").hasMatch(value) ? null : 'Enter a valid Password.';
+  }
+}
+
 class CustomPassFormField extends StatefulWidget {
   final Function(String) onSaved;
-  final String regEx;
   final String hintText;
   final bool obscureText;
 
   CustomPassFormField({
     required this.onSaved,
-    required this.regEx,
     required this.hintText,
     required this.obscureText,
   });
@@ -46,9 +50,7 @@ class _CustomPassFormFieldState extends State<CustomPassFormField> {
             cursorColor: Colors.white,
             style: const TextStyle(color: Colors.white),
             validator: (_value) {
-              return RegExp(widget.regEx).hasMatch(_value!)
-                  ? null
-                  : 'Enter a valid Password.';
+              PasswordFieldValidator.validate(_value!);
             },
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.only(top: 15.0),
