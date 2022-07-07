@@ -93,7 +93,7 @@ class _PersonalInfoState extends State<PersonalInfo> {
             style: TextStyle(
               color: Colors.white70,
               fontSize: 22,
-              fontWeight: FontWeight.w500,
+              //fontWeight: FontWeight.w500,
             ),
           ),
           Container(
